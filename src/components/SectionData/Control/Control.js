@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HeaderData from "../common/HeaderData/HeaderData";
 import TableData from "../common/TableData/TableData";
-import ModalForm from '../common/Modal/ModalForm';
+import Modal from '../common/Modal/Modal';
 import TestModal from '../common/Modal/TestModal';
 
 import add from "../../../img/plus.svg";
@@ -93,7 +93,7 @@ class Control extends Component {
                 />
                 { 
                     this.state.isModal 
-                        && <ModalForm 
+                        && <Modal 
                             //data={this.state.idAction} 
                             // showModal={this.state.isModule}
                             showModal={this.showModal}
