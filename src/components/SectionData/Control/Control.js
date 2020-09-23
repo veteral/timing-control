@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import HeaderData from "../common/HeaderData/HeaderData";
 import TableData from "../common/TableData/TableData";
 import Modal from '../common/Modal/Modal';
-import TestModal from '../common/Modal/TestModal';
 
 import add from "../../../img/plus.svg";
 import edit from "../../../img/edit.svg";
@@ -100,10 +99,7 @@ class Control extends Component {
                             // startDate={this.state.startDate} 
                             // setStartDate={this.setStartDate}
                         />
-                }
-
-                {/* { this.state.showModal && <TestModal handleModal={this.handleModal}/> }
-                <button onClick={this.handleModal}> Show modal </button> */}
+                }                
             </>
         );
     }

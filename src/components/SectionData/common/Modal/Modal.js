@@ -1,11 +1,21 @@
 import React from 'react';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import s from './Modal.module.css';
-import FormControl from './FormControl/FormControl';
 import { Formik } from 'formik';
+
+import Select from './Select/Select';
 import DatePicker from '../DatePicker/DatePiker';
 
+
 const ModalForm = (props) => {
+
+  const dropdownOptions = [
+    { key: 'Select an option', value: '' },
+    { key: 'Option 1', value: 'option1' },
+    { key: 'Option 2', value: 'option2' },
+    { key: 'Option 3', value: 'option3' }
+  ]
+
   return (
     <>
       <Formik
@@ -45,13 +55,13 @@ const ModalForm = (props) => {
 
                 <Modal.Body>
                   <Form.Row>
-                    <Form.Group as={Col} controlId="formGridDateStart">
+                    <Form.Group as={Col} controlId="beginDate">
                       <Form.Label>Документ от:&nbsp;</Form.Label>
                       <DatePicker
                         name='beginDate'
                       />
                     </Form.Group>
-                    <Form.Group as={Col} controlId="formGridNumDoc">
+                    <Form.Group as={Col} controlId="numberDoc">
                       <Form.Label>Номер документа</Form.Label>
                       <Form.Control
                         type="text"
@@ -64,38 +74,25 @@ const ModalForm = (props) => {
                   </Form.Row>
 
                   <Form.Row>
-                    <Form.Group as={Col} controlId="formGridTypeDoc">
+                    <Form.Group as={Col} controlId="type">
                       <Form.Label>Тип документа</Form.Label>
-                      <Form.Control 
-                        as="select" 
-                        defaultValue={values.type}
-                        name="type"
-                        onChange={handleChange}
-                        // onBlur={handleBlur}
-                        value={values.type}
-                      >
-                        <option>Заявка1</option>
-                        <option>Письмо</option>
-                      </Form.Control>
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="formGridExecuted">
+                        <Select
+                          control='select'                          
+                          name='type'
+                          options={dropdownOptions}
+                        />                                              
+                    </Form.Group>                   
+                    <Form.Group as={Col} controlId="executor">
                       <Form.Label>Ответственный исполнитель</Form.Label>
-                      <Form.Control 
-                        as="select" 
-                        //defaultValue="Заповитряный"
-                        defaultValue={values.executor}
-                        name="executor"
-                        onChange={handleChange}
-                        // onBlur={handleBlur}
-                        value={values.executor}
-                      >
-                        <option>Заповитряный</option>
-                        <option>Кирикович</option>
-                      </Form.Control>
+                        <Select
+                          control='select'                          
+                          name='executor'
+                          options={dropdownOptions}
+                        />
                     </Form.Group>
                   </Form.Row>
 
-                  <Form.Group as={Row} controlId="formPlaintextPassword">
+                  <Form.Group as={Row} controlId="endDate">
                     <Form.Label column sm="3">
                       Контрольный срок:
                     </Form.Label>
@@ -106,7 +103,8 @@ const ModalForm = (props) => {
                     </Col>
                   </Form.Group>
 
-                  <Form.Group controlId="formGridHeader">
+
+                  <Form.Group controlId="title">
                     <Form.Label>Заголовок документа</Form.Label>
                     <Form.Control 
                       type="text"
@@ -117,7 +115,7 @@ const ModalForm = (props) => {
                     />
                   </Form.Group>
 
-                  <Form.Group controlId="formGridAddText">
+                  <Form.Group controlId="text">
                     <Form.Label>Дополнительная информация</Form.Label>
                     <Form.Control 
                       as="textarea" 
