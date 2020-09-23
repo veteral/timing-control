@@ -17,8 +17,8 @@ class Control extends Component {
         data: [],
         actionRow: null,                    //action elements                
         isModal: false,
-        startDate: new Date(),
-        endDate: null
+        // startDate: new Date(),
+        // endDate: null
     };    
 
     componentDidMount() {
@@ -97,8 +97,8 @@ class Control extends Component {
                             //data={this.state.idAction} 
                             // showModal={this.state.isModule}
                             showModal={this.showModal}
-                            startDate={this.state.startDate} 
-                            setStartDate={this.setStartDate}
+                            // startDate={this.state.startDate} 
+                            // setStartDate={this.setStartDate}
                         />
                 }
 

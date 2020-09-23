@@ -3,13 +3,16 @@ import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import s from './Modal.module.css';
 import FormControl from './FormControl/FormControl';
 import { Formik } from 'formik';
+import DatePicker from '../DatePicker/DatePiker';
 
 const ModalForm = (props) => {
   return (
     <>
       <Formik
         initialValues={{
+          beginDate: null,
           numberDoc: '',
+          endDate: null,
           type: 'Письмо111',
           executor: '',
           title: '',
@@ -44,9 +47,9 @@ const ModalForm = (props) => {
                   <Form.Row>
                     <Form.Group as={Col} controlId="formGridDateStart">
                       <Form.Label>Документ от:&nbsp;</Form.Label>
-                      {/* <DatePicker
-
-                      /> */}
+                      <DatePicker
+                        name='beginDate'
+                      />
                     </Form.Group>
                     <Form.Group as={Col} controlId="formGridNumDoc">
                       <Form.Label>Номер документа</Form.Label>
@@ -97,10 +100,9 @@ const ModalForm = (props) => {
                       Контрольный срок:
                     </Form.Label>
                     <Col sm="9">
-                      {/* <DatePicker
-                        startDate={props.startDate}
-                        setStartDate={props.setStartDate}
-                      /> */}
+                      <DatePicker
+                          name='endDate'
+                        />
                     </Col>
                   </Form.Group>
 
