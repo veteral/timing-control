@@ -3,8 +3,9 @@ import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import s from './Modal.module.css';
 import { Formik } from 'formik';
 
-import Select from './Select/Select';
+import Select from './tags/Select/Select';
 import DatePicker from '../DatePicker/DatePiker';
+import FormGroup from './FormGroup/FormGroup';
 
 
 const ModalForm = (props) => {
@@ -14,7 +15,7 @@ const ModalForm = (props) => {
     { key: 'Option 1', value: 'option1' },
     { key: 'Option 2', value: 'option2' },
     { key: 'Option 3', value: 'option3' }
-  ]
+  ];
 
   return (
     <>
@@ -34,10 +35,9 @@ const ModalForm = (props) => {
       >
 
         {({
-          values,
-          handleChange,
-          handleBlur,
-          handleSubmit,
+          values, 
+          handleChange,          
+          handleSubmit
         }) => (
             <Modal
               size="lg"
@@ -56,7 +56,7 @@ const ModalForm = (props) => {
                 <Modal.Body>
                   <Form.Row>
                     <Form.Group as={Col} controlId="beginDate">
-                      <Form.Label>Документ от:&nbsp;</Form.Label>
+                      <Form.Label>Документ от:</Form.Label>
                       <DatePicker
                         name='beginDate'
                       />
@@ -127,6 +127,9 @@ const ModalForm = (props) => {
                       value={values.text}
                     />
                   </Form.Group>
+
+                  <FormGroup />  
+
                 </Modal.Body>
 
                 <Modal.Footer>
