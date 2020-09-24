@@ -3,7 +3,7 @@ import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import s from './Modal.module.css';
 import { Formik } from 'formik';
 
-import Select from './tags/Select/Select';
+import Select from './FormGroup/controls/Select/Select';
 import DatePicker from '../DatePicker/DatePiker';
 import FormGroup from './FormGroup/FormGroup';
 

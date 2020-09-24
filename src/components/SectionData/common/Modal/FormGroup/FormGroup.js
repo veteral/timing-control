@@ -1,5 +1,5 @@
 import React from 'react';
-import Select from '../tags/Select/Select';
+import Select from './controls/Select/Select';
 import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 
 const FormGroup = (props) => {
