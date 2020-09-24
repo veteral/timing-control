@@ -8,7 +8,7 @@ import { registerLocale } from  "react-datepicker";
 import ru from 'date-fns/locale/ru';
 import "react-datepicker/dist/react-datepicker.css";
 
-const DatePicker = ( { name } ) => {  
+const DatePicker = ( { name, label } ) => {  
     //const { name, ...rest } = props
     registerLocale('ru', ru);
     return (
@@ -17,15 +17,10 @@ const DatePicker = ( { name } ) => {
           {({ form, field }) => {          
             const { setFieldValue } = form
             const { value } = field
-  
-            console.log('form', form)
-            console.log('field', field)
-            console.log('value', value)
-            console.log('setFieldValue', setFieldValue)
-  
+
             return (
               <>
-                <Form.Label>Документ от:</Form.Label>
+                <Form.Label>{label}</Form.Label>
                 <DateView
                   locale="ru"
                   dateFormat="dd/MM/yyyy"

@@ -13,35 +13,37 @@ const MasterDataGroup = (props) => {
         { key: 'Option 1', value: 'option1' },
         { key: 'Option 2', value: 'option2' },
         { key: 'Option 3', value: 'option3' }
-      ];
-
+      ];   
+    
     return (
         <>
              <Form.Row>
                 <Form.Group as={Col} controlId="beginDate">                    
                     <DatePicker
                         name='beginDate'
+                        label='Документ от:'
                     />
                 </Form.Group>
                 <Form.Group as={Col} controlId="numberDoc">                    
-                    <Input name={'numberDoc'} title={'Номер документа'} />
+                    <Input 
+                        name={'numberDoc'} 
+                        label={'Номер документа:'} 
+                    />
                 </Form.Group>
             </Form.Row>
 
             <Form.Row>
-                <Form.Group as={Col} controlId="type">
-                    <Form.Label>Тип документа</Form.Label>
-                    <Select
-                        control='select'
+                <Form.Group as={Col} controlId="type">                    
+                    <Select                        
                         name='type'
+                        label='Тип документа:'
                         options={dropdownOptions}
                     />
                 </Form.Group>
-                <Form.Group as={Col} controlId="executor">
-                    <Form.Label>Ответственный исполнитель</Form.Label>
-                    <Select
-                        control='select'
+                <Form.Group as={Col} controlId="executor">                    
+                    <Select                        
                         name='executor'
+                        label='Ответственный исполнитель:'
                         options={dropdownOptions}
                     />
                 </Form.Group>
@@ -50,28 +52,26 @@ const MasterDataGroup = (props) => {
             <Form.Group controlId="endDate">                
                     <DatePicker
                         name='endDate'
+                        label='Контрольный срок:'
                     />                
             </Form.Group> 
 
 
             <Form.Group controlId="title">                
-                <Input name={'title'} title={'Documents'} />
-            </Form.Group>
-
-            <Form.Group controlId="text">
-                <Form.Label>Дополнительная информация</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    rows="3"
-                    type="text"
-                    name="text"
-                    //onChange={handleChange}
-                    // onBlur={handleBlur}
-                    //value={values.text}
+                <Input 
+                    name={'title'} 
+                    label='Наименование документа:' 
                 />
             </Form.Group>
 
-            {/* <FormGroup /> */}
+            <Form.Group controlId="text">                
+                <Input
+                    as="textarea"
+                    rows="3"                    
+                    name="text"
+                    label='Дополнительная информация:'                    
+                />
+            </Form.Group>            
         </>
     );
 }

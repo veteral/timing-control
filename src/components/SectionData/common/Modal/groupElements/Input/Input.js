@@ -3,11 +3,11 @@ import { Field } from 'formik';
 import { Form } from 'react-bootstrap';
 
 
-const Input = (props) => {
+const Input = ({name, label, ...res}) => {
     return (
         <>
-            <Form.Label>{props.title}</Form.Label>
-            <Field id={props.name} name={props.name} className={'form-control'} />
+            <Form.Label>{label}</Form.Label>
+            <Field id={name} name={name} className={'form-control'} {...res} />
         </>
     );
 }

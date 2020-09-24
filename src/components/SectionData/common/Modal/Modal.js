@@ -6,7 +6,8 @@ import { Formik } from 'formik';
 // import Select from './groupElements/Select/Select';
 // import DatePicker from './FormGroup/controls/DatePicker/DatePiker';
 
-import MasterDataGroup from './groups/MasterDataGroup';
+//import MasterDataGroup from './groups/MasterDataGroup';
+import AdditionalDataGroup from './groups/AdditionalDataGroup';
 
 
 const ModalForm = (props) => {
@@ -41,7 +42,7 @@ const ModalForm = (props) => {
           handleSubmit
         }) => (
             <Modal
-              size="lg"
+              size="sm"
               show={true}
               // show={props.showModal}
               onHide={props.showModal}
@@ -55,7 +56,8 @@ const ModalForm = (props) => {
                 </Modal.Header>
 
                 <Modal.Body>
-                  <MasterDataGroup />
+                  {/* <MasterDataGroup /> */}
+                  <AdditionalDataGroup />
                   {/* <Form.Row>
                     <Form.Group as={Col} controlId="beginDate">
                       <Form.Label>Документ от:</Form.Label>
