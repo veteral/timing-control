@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './DatePicker.module.css';
+import { Form } from 'react-bootstrap';
 import { Field } from 'formik';
 
 import DateView from "react-datepicker"; 
@@ -23,15 +24,18 @@ const DatePicker = ( { name } ) => {
             console.log('setFieldValue', setFieldValue)
   
             return (
-              <DateView
-                locale="ru"
-                dateFormat="dd/MM/yyyy"
-                id={name}
-                {...field}                
-                selected={value}
-                onChange={val => setFieldValue(name, val)}
-                className={`form-control ${s.w100p}`}
-              />
+              <>
+                <Form.Label>Документ от:</Form.Label>
+                <DateView
+                  locale="ru"
+                  dateFormat="dd/MM/yyyy"
+                  id={name}
+                  {...field}                
+                  selected={value}
+                  onChange={val => setFieldValue(name, val)}
+                  className={`form-control ${s.w100p}`}
+                />
+              </>
             )
           }}
         </Field>        
