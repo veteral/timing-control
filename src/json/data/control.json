@@ -1,5 +1,4 @@
-{
-  "tableBody": [
+[
     {
       "id": 1,
       "numDoc": "28/395/22",
@@ -8,9 +7,7 @@
       "executionData": "25.20.2020",
       "header": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
       "addInformation": "ввававав аыыаыаыаыа",
-      "typeDoc": 1,
-      "executed": false,
-      "active": false
+      "typeDoc": 1
     },
     {
       "id": 2,
@@ -20,9 +17,7 @@
       "executionData": "25.20.2020",
       "header": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
       "addInformation": "ввававав аыыаыаыаыа",
-      "typeDoc": 1,
-      "executed": false,
-      "active": false
+      "typeDoc": 1      
     },
     {
       "id": 3,
@@ -32,9 +27,7 @@
       "executionData": "25.20.2020",
       "header": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
       "addInformation": "ввававав аыыаыаыаыа",
-      "typeDoc": 1,
-      "executed": false,
-      "active": false
+      "typeDoc": 1
     },
     {
       "id": 4,
@@ -44,9 +37,7 @@
       "executionData": "25.20.2020",
       "header": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
       "addInformation": "ввававав аыыаыаыаыа",
-      "typeDoc": 1,
-      "executed": false,
-      "active": false
+      "typeDoc": 1
     },
     {
       "id": 5,
@@ -56,9 +47,7 @@
       "executionData": "25.20.2020",
       "header": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
       "addInformation": "ввававав аыыаыаыаыа",
-      "typeDoc": 1,
-      "executed": false,
-      "active": false
+      "typeDoc": 1
     },
     {
       "id": 6,
@@ -68,9 +57,7 @@
       "executionData": "25.20.2020",
       "header": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
       "addInformation": "ввававав аыыаыаыаыа",
-      "typeDoc": 2,
-      "executed": false,
-      "active": false
+      "typeDoc": 2
     },
     {
       "id": 7,
@@ -80,9 +67,6 @@
       "executionData": "25.20.2020",
       "header": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
       "addInformation": "ввававав аыыаыаыаыа",
-      "typeDoc": 1,
-      "executed": false,
-      "active": false
+      "typeDoc": 1      
     }
-  ]
-}
+]

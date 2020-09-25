@@ -26,10 +26,11 @@ class Control extends Component {
             .then(response => response.json())
             .then(response => {
                 this.setState({
-                    data: response.tableBody,
-                    actionRow: response.tableBody[0]                     
+                    data: response,
+                    actionRow: response.control[0]                     
                 })
-                console.log('tableData', this.state.data);
+                console.log('data', this.state.data);
+                console.log('actionRow', this.state.actionRow);
             })
     }
 
@@ -85,11 +86,11 @@ class Control extends Component {
         {console.log('render-BlockBtn', blockOfButtons)} */}
 
                 <HeaderData title={titleSection} blockOfButtons={blockOfButtons} />
-                <TableData
+                {/* <TableData
                     dataTable={this.state.data}
                     actionRow={this.state.actionRow}
                     clickRowTable={this.clickRowTable}
-                />
+                /> */}
                 { 
                     this.state.isModal 
                         && <Modal 
