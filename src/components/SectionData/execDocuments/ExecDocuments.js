@@ -2,7 +2,7 @@ import React from 'react';
 // import HeaderData from "../common/HeaderData/HeaderData";
 // import TableData from "../common/TableData/TableData";
 
-const AllDocuments = () => {
+const ExecDocuments = () => {
     return (
         <>
             <div>All documents</div>
@@ -12,4 +12,4 @@ const AllDocuments = () => {
     );
 }
 
-export default AllDocuments;
+export default ExecDocuments;
