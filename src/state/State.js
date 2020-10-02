@@ -7,12 +7,19 @@ import {stateReducer} from './stateReducer';
 
 export const State = ({children}) => {
   const initialState = {
-    //notes: [],
+    data: [],
     //loading: false
   }
   const [state, dispatch] = useReducer(stateReducer, initialState);
  
-  
+  const getDocuments = async () => {
+    //showLoader()
+    const response = await fetch('http://localhost:5000/');
+    const data = await response.json(); 
+
+    dispatch({type: GET_DOCUMENTS, data});
+  }
+
   return (
     <StateContext.Provider value={{
       

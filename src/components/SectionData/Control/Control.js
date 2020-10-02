@@ -20,8 +20,18 @@ class Control extends Component {
         // endDate: null
     };    
 
+    async fetchDoc () {
+        const res = await fetch('http://localhost:5000/');
+        const reset = await res.json();
+
+        console.log('res', reset);
+    }
+
+
     componentDidMount() {
         console.log('mount');
+        this.fetchDoc();
+
         // fetch('http://localhost:5000/')
         //     .then(response => response.json())
         //     .then(response => {
@@ -34,6 +44,7 @@ class Control extends Component {
         //     })
     }
 
+    
     componentDidUpdate() {
         console.log('update');
     }

@@ -13,13 +13,11 @@ app.use((req, res, next) => {
     next();
 });
 
-
+const path = './json/data/';    //путь к данным
 /*
  получение данных control
  */
 app.get('/', (req, res, next) => {
-
-  const path = './json/data/';
          
   const control = getData(path + 'control.json');    
   const execution = getData(path + 'execution.json');
