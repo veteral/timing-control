@@ -14,7 +14,7 @@ const HeaderSection = () => {
                     <NavLink exact to={'/'} className="nav-link">Контроль</NavLink>
                 </li>
                 <li className="nav-item">
-                    <NavLink to={'/all'} className="nav-link">Список документов</NavLink>                  
+                    <NavLink to={'/all'} className="nav-link">Исполненные документы</NavLink>                  
                 </li>
                 <li className="nav-item">
                     <NavLink to={'/type'} className="nav-link">Виды документов</NavLink>

@@ -22,16 +22,16 @@ class Control extends Component {
 
     componentDidMount() {
         console.log('mount');
-        fetch('http://localhost:5000/')
-            .then(response => response.json())
-            .then(response => {
-                this.setState({
-                    data: response,
-                    actionRow: response.control[0]                     
-                })
-                console.log('data', this.state.data);
-                console.log('actionRow', this.state.actionRow);
-            })
+        // fetch('http://localhost:5000/')
+        //     .then(response => response.json())
+        //     .then(response => {
+        //         this.setState({
+        //             data: response,
+        //             actionRow: response.control[0]                     
+        //         })
+        //         console.log('data', this.state.data);
+        //         console.log('actionRow', this.state.actionRow);
+        //     })
     }
 
     componentDidUpdate() {
@@ -42,11 +42,11 @@ class Control extends Component {
      * row - объект по которому кликнули
      */
 
-    setStartDate = date => {
-        this.setState (
-            { startDate: date }
-        )
-    }
+    // setStartDate = date => {
+    //     this.setState (
+    //         { startDate: date }
+    //     )
+    // }
 
     clickRowTable = row => {        
         this.setState({ actionRow: row });
@@ -81,10 +81,6 @@ class Control extends Component {
 
         return (
             <>
-                       
-        {/* {console.log('render', this.state.isModal)}
-        {console.log('render-BlockBtn', blockOfButtons)} */}
-
                 <HeaderData title={titleSection} blockOfButtons={blockOfButtons} />
                 {/* <TableData
                     dataTable={this.state.data}
