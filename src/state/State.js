@@ -2,7 +2,7 @@ import React, {useReducer} from 'react';
 // import axios from 'axios'
 import {StateContext} from './stateContext';
 import {stateReducer} from './stateReducer';
-import { GET_DOCUMENTS, SET_DOCUMENTS } from './type';
+import { DATA } from './type';
 // import {ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER} from '../types'
 
 
@@ -33,13 +33,13 @@ export const State = ({children}) => {
     // const data = await response
     console.log('data post', data);
 
-    const data = await request(URL, 'POST', data);     
+    const newData = await request(URL, 'POST', data);     
 
-    dispatch({type: DATA, data});
+    dispatch({type: DATA, newData});
   }
 
   //функция запроса на сервер
-  const request = (url,  method = 'GET', data = null) => {
+  const request = async (url,  method = 'GET', data = null) => {
     try {
       const headers = {};
       let body;
@@ -63,9 +63,12 @@ export const State = ({children}) => {
 
   return (
     <StateContext.Provider value={{
-      data: state, getDocuments
+      data: state,
+      getData
     }}>
       {children}
     </StateContext.Provider>
   )
 }
+
+export default State;

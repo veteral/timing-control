@@ -4,15 +4,18 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {BrowserRouter} from 'react-router-dom'
 import SectionHeader from './components/SectionHeader/SectionHeader';
 import SectionData from './components/SectionData/SectionData';
+import State from './state/State';
 
 const App = () => {
   return (
     <>
-      <BrowserRouter>
-        <SectionHeader />  
-        <SectionData />    
-      </BrowserRouter>
-    </>    
+      <State>
+        <BrowserRouter>
+          <SectionHeader />  
+          <SectionData />    
+        </BrowserRouter>
+      </State>  
+    </>  
   );
 }
 

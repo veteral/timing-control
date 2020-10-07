@@ -19,28 +19,8 @@ const TableData = (props) => {
     //     <th key={index}>{el}</th>                    
     // );
 
-    const tableBodyElements = props.dataTable.map(el => {
-        // className={'table-danger'}
-        return (             
-            <tr key={el.id} onClick={props.clickRowTable.bind(null, el)}>
-            {                 
-                el.id === props.actionRow.id 
-                    ? <td>
-                        <img src={actionRow} className={s.img} />
-                    </td> 
-                    : <td>&nbsp;</td> 
-            }
-            <td>{el.numDoc}</td>
-            <td>{el.dataDoc}</td>
-            <td>{el.executorDoc}</td>
-            <td>{el.executionData}</td>
-            <td>{el.header}</td>
-            <td>{el.addInformation}</td>
-            <td>{el.typeDoc}</td>            
-        </tr>
-        );
-        
-    });
+    console.log('Props',props)
+    
 
     return (
         <>        
@@ -54,7 +34,32 @@ const TableData = (props) => {
                    </tr>
                 </thead>
                 <tbody>
-                    {tableBodyElements}
+                    {                        
+                        props.dataTable &&
+                            props.dataTable.control.map(el => {
+                                // className={'table-danger'}
+                                return (  
+                                    <tr>           
+                                    {/* <tr key={el.id} onClick={props.clickRowTable.bind(null, el)}> */}
+                                    {/* {                 
+                                        el.id === props.actionRow.id 
+                                            ? <td>
+                                                <img src={actionRow} className={s.img} />
+                                            </td> 
+                                            : <td>&nbsp;</td> 
+                                    } */}
+                                    <td>{el.numDoc}</td>
+                                    <td>{el.dataDoc}</td>
+                                    <td>{el.executorDoc}</td>
+                                    <td>{el.executionData}</td>
+                                    <td>{el.header}</td>
+                                    <td>{el.addInformation}</td>
+                                    <td>{el.typeDoc}</td>            
+                                </tr>
+                                );
+                                
+                            })
+                    }
                 </tbody>
             </table>
         </>
