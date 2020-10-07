@@ -1,4 +1,6 @@
-export const GET_DOCUMENTS = 'GET_DOCUMENTS';
-export const ADD_DOCUMENTS = 'ADD_DOCUMENTS';
-export const EDIT_DOCUMENTS = 'EDIT_DOCUMENTS';
-export const DELETE_DOCUMENTS = 'DELETE_DOCUMENTS';
+export const DATA = 'DATA';
+
+//export const SET_DOCUMENTS = 'SET_DOCUMENTS';
+
+//export const EDIT_DOCUMENTS = 'EDIT_DOCUMENTS';
+//export const DELETE_DOCUMENTS = 'DELETE_DOCUMENTS';

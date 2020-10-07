@@ -2,6 +2,7 @@ import React, {useReducer} from 'react';
 // import axios from 'axios'
 import {StateContext} from './stateContext';
 import {stateReducer} from './stateReducer';
+import { GET_DOCUMENTS, SET_DOCUMENTS } from './type';
 // import {ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER} from '../types'
 
 
@@ -16,20 +17,25 @@ export const State = ({children}) => {
   const [state, dispatch] = useReducer(stateReducer, initialState);
  
   //получаем json данные из файла
-  const getDocuments = async () => {
+  const getData = async () => {
     //showLoader()    
     const data = await request(URL); 
 
     console.log('data fetch', data);
 
-    dispatch({type: GET_DOCUMENTS, data});
+    dispatch({type: DATA, data});
   }
 
   //записываем данные в файл после изменений данных - 
   //добавления, изменения или удаления
-  const setDocuments = async () => {
-    const response = await fetch(URL);
-    const data = await response
+  const setData = async (data) => {
+    // const response = await fetch(URL);
+    // const data = await response
+    console.log('data post', data);
+
+    const data = await request(URL, 'POST', data);     
+
+    dispatch({type: DATA, data});
   }
 
   //функция запроса на сервер
@@ -57,7 +63,7 @@ export const State = ({children}) => {
 
   return (
     <StateContext.Provider value={{
-      
+      data: state, getDocuments
     }}>
       {children}
     </StateContext.Provider>
