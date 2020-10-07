@@ -17,16 +17,21 @@ const path = './json/data/';    //путь к данным
 /*
  получение данных control
  */
-app.get('/', (req, res, next) => {
+app.get('/', (req, res) => {
          
-  const control = getData(path + 'control.json');    
-  const execution = getData(path + 'execution.json');
-  const type = getData(path + 'type.json');
+  //const control = getData(path + 'control.json');    
+  //const execution = getData(path + 'execution.json');
+  //const type = getData(path + 'type.json');
   
-  const data = {control, execution, type};
-  console.log('data', data);
+  //const data = {control, execution, type};
+  const data = getData(path + 'data.json');
+  //console.log('data', data);
 
   res.send(data);  
+});
+
+app.post('/', (req, res) => {
+  console.log('req.body', req.body);
 });
 
 

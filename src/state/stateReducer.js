@@ -5,6 +5,7 @@ export const stateReducer = (state, action) => {
           ...data
         });
       
+      console.log('data reduce', data);
       default: return state
     }
   }
