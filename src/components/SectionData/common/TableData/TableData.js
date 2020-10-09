@@ -3,8 +3,8 @@ import s from './TableData.module.css';
 import next from '../../../../img/next.png';
 
 
-const TableData = ({dataTable}) => {
-    const [actionRow, setActionRow] = useState(dataTable.control[0]);
+const TableData = ({dataTable, actionRow}) => {
+    //const [actionRow, setActionRow] = useState(dataTable.control[0]);
     const tableTitle = [
         ' ', 
         'Номер документа', 
@@ -22,6 +22,8 @@ const TableData = ({dataTable}) => {
 
     //debugger;
     console.log('Props TableData',dataTable)
+    console.log('typeDoc', dataTable.type[0].id)
+    //debugger;
     
 
     return (
@@ -37,12 +39,10 @@ const TableData = ({dataTable}) => {
                 </thead>
                 <tbody>
                     {                        
-                        
-                            dataTable.control.map(el => {
+                        dataTable.control.map(el => {
                                 // className={'table-danger'}
                                 return (  
-                                    <tr>           
-                                    {/* <tr key={el.id} onClick={props.clickRowTable.bind(null, el)}> */}
+                                    <tr key={el.id} > 
                                     {                 
                                         el.id === actionRow.id 
                                             ? <td>
@@ -52,11 +52,19 @@ const TableData = ({dataTable}) => {
                                     }
                                     <td>{el.numDoc}</td>
                                     <td>{el.dataDoc}</td>
-                                    <td>{el.executorDoc}</td>
+                                    <td>
+                                        {
+                                            dataTable.execution.find(f => f.id === el.executorDoc).name
+                                        }
+                                    </td>
                                     <td>{el.executionData}</td>
                                     <td>{el.header}</td>
                                     <td>{el.addInformation}</td>
-                                    <td>{el.typeDoc}</td>            
+                                    <td>
+                                        {
+                                            dataTable.type.find(f => f.id === el.typeDoc).name
+                                        }
+                                    </td>            
                                 </tr>
                                 );
                                 

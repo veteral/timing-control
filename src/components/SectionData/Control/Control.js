@@ -14,16 +14,14 @@ const Control = () => {
     const titleSection = 'Документы на контроле:';
     const {data, getData} = useContext(StateContext); 
        
-    const [isModal, setModal] = useState(true);
-    //const [actionRow, setActionRow] = useState({});
+    const [isModal, setModal] = useState(true);   
 
     useEffect(() => {
-        getData();    
-        //actionRow = setActionRow(data.control[0]);            
-        //console.log('Data useEffect', data.control);
+        getData();            
     }, []);
     
     console.log('Control DATA', JSON.stringify(data));
+    console.log('isModal', isModal);
 
     return (
         <>
