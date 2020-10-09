@@ -17,7 +17,7 @@ const path = './json/data/';    //путь к данным
 /*
  получение данных control
  */
-app.get('/', (req, res) => {
+app.get('/', (req, res, next) => {
          
   //const control = getData(path + 'control.json');    
   //const execution = getData(path + 'execution.json');
@@ -30,8 +30,11 @@ app.get('/', (req, res) => {
   res.send(data);  
 });
 
-app.post('/', (req, res) => {
-  console.log('req.body', req.body);
+app.post('/', (req, res, next) => {
+  const data = { ...req.body }
+  console.log('req.body', data);
+
+  if (!req.body) return res.sendStatus(400);
 });
 
 

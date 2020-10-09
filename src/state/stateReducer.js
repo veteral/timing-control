@@ -4,14 +4,14 @@ import {
       } from "./type";
 
 export const stateReducer = (state, action) => {
-  //console.log('state', state)
-  //console.log('action', action)
+  
   console.log('reducer - action type', action.type)
     switch (action.type) {
       case DATA:
         return ({
           ...action.payload          
         });
+
       case SET_ACTION_ROW:
         return ({
           ...state,

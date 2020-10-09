@@ -19,7 +19,7 @@ export const State = ({children}) => {
   }
   const [state, dispatch] = useReducer(stateReducer, initialState);
  
-  /**
+  /**************************************************
    * получаем json данные из файла 
    */  
   const getData = async () => {
@@ -31,33 +31,40 @@ export const State = ({children}) => {
       ...data,
       actionRow: action
     }
-
-    console.log('data fetch', payload);
-
+    //console.log('data fetch', payload);
     dispatch({type: DATA, payload});
   }
 
-  /**
+  /**************************************************
    * получаем активную строку по клику 
    */
-
    const setActionRow = el => {
      dispatch({type: SET_ACTION_ROW, el});
    }
 
-  //записываем данные в файл после изменений данных - 
-  //добавления, изменения или удаления
+   /**************************************************
+    * записываем данные в файл после изменений данных -
+    * добавления, изменения или удаления
+    */  
   const setData = async (data) => {
     // const response = await fetch(URL);
     // const data = await response
-    console.log('data post', data);
+    //debugger;
+    console.log('data post - OLD', data);
 
-    const newData = await request(URL, 'POST', data);     
+    const datapost = {a: 1}
 
-    dispatch({type: DATA, newData});
+    const newData = await request(URL, 'POST', datapost);     
+
+    console.log('data post - NEW', newData);
+    
+
+    //dispatch({type: DATA, newData});
   }
 
-  //функция запроса на сервер
+  /**************************************************
+  * функция запроса на сервер  
+  */    
   const request = async (url,  method = 'GET', data = null) => {
     try {
       const headers = {};
@@ -67,6 +74,8 @@ export const State = ({children}) => {
         headers['Content-Type'] = 'application/json';
         body = JSON.stringify(data);
       }
+
+      console.log('BODY', body);
   
       const response = await fetch(url, {
         method,
@@ -83,7 +92,7 @@ export const State = ({children}) => {
   return (
     <StateContext.Provider value={{
       data: state,
-      getData, setActionRow
+      getData, setActionRow, setData
     }}>
       {children}
     </StateContext.Provider>

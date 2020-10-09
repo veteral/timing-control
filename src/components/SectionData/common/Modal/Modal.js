@@ -10,7 +10,7 @@ import MasterDataGroup from './groups/MasterDataGroup';
 import AdditionalDataGroup from './groups/AdditionalDataGroup';
 
 
-const ModalForm = ( {showModal, show } ) => {
+const ModalForm = ( {showModal, show, setData } ) => {
 
   const dropdownOptions = [
     { key: 'Select an option', value: '' },
@@ -35,6 +35,7 @@ const ModalForm = ( {showModal, show } ) => {
         }}
         onSubmit={(values) => {
           console.log('Submit', values);
+          setData(values);
         }}        
       >
 
