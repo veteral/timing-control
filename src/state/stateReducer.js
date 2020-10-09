@@ -1,4 +1,7 @@
-import { DATA } from "./type";
+import { 
+        DATA,
+        SET_ACTION_ROW 
+      } from "./type";
 
 export const stateReducer = (state, action) => {
   //console.log('state', state)
@@ -6,16 +9,15 @@ export const stateReducer = (state, action) => {
   console.log('reducer - action type', action.type)
     switch (action.type) {
       case DATA:
-        console.log('Reduce - action', action)
-
-        const newState = {...action.payload}
-
-        console.log('Reduce - action NEW', newState)
-
         return ({
           ...action.payload          
         });
-      
+      case SET_ACTION_ROW:
+        return ({
+          ...state,
+          actionRow: action.el
+        })
+
       
       //console.log('data reduce', data);
       default: return state

@@ -2,7 +2,9 @@ import React, {useReducer} from 'react';
 // import axios from 'axios'
 import {StateContext} from './stateContext';
 import {stateReducer} from './stateReducer';
-import { DATA } from './type';
+import {  DATA,
+          SET_ACTION_ROW
+        } from './type';
 // import {ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER} from '../types'
 
 
@@ -17,7 +19,9 @@ export const State = ({children}) => {
   }
   const [state, dispatch] = useReducer(stateReducer, initialState);
  
-  //получаем json данные из файла
+  /**
+   * получаем json данные из файла 
+   */  
   const getData = async () => {
     //showLoader()    
     const data = await request(URL); 
@@ -32,6 +36,14 @@ export const State = ({children}) => {
 
     dispatch({type: DATA, payload});
   }
+
+  /**
+   * получаем активную строку по клику 
+   */
+
+   const setActionRow = el => {
+     dispatch({type: SET_ACTION_ROW, el});
+   }
 
   //записываем данные в файл после изменений данных - 
   //добавления, изменения или удаления
@@ -71,7 +83,7 @@ export const State = ({children}) => {
   return (
     <StateContext.Provider value={{
       data: state,
-      getData
+      getData, setActionRow
     }}>
       {children}
     </StateContext.Provider>

@@ -12,7 +12,7 @@ import Modal from '../common/Modal/Modal';
 
 const Control = () => {
     const titleSection = 'Документы на контроле:';
-    const {data, getData} = useContext(StateContext); 
+    const {data, getData, setActionRow} = useContext(StateContext); 
        
     const [isModal, setModal] = useState(true);   
 
@@ -20,7 +20,7 @@ const Control = () => {
         getData();            
     }, []);
     
-    console.log('Control DATA', JSON.stringify(data));
+    console.log('Control DATA', JSON.stringify(data.actionRow));
     console.log('isModal', isModal);
 
     return (
@@ -31,7 +31,7 @@ const Control = () => {
                     <TableData
                         dataTable={data}
                         actionRow={data.actionRow}
-
+                        setActionRow={setActionRow}
                     />                 
             }
             { 

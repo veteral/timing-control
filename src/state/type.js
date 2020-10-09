@@ -1,4 +1,5 @@
 export const DATA = 'DATA';
+export const SET_ACTION_ROW = 'SET_ACTION_ROW';
 
 //export const SET_DOCUMENTS = 'SET_DOCUMENTS';
 

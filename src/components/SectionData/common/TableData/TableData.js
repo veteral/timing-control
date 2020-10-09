@@ -3,8 +3,7 @@ import s from './TableData.module.css';
 import next from '../../../../img/next.png';
 
 
-const TableData = ({dataTable, actionRow}) => {
-    //const [actionRow, setActionRow] = useState(dataTable.control[0]);
+const TableData = ({dataTable, actionRow, setActionRow}) => {    
     const tableTitle = [
         ' ', 
         'Номер документа', 
@@ -15,12 +14,7 @@ const TableData = ({dataTable, actionRow}) => {
         'Дополнительная информация',
         'Тип документа',
     ];
-
-    // const tableHeaderElements = tableTitle.map((el, index) =>                           
-    //     <th key={index}>{el}</th>                    
-    // );
-
-    //debugger;
+    
     console.log('Props TableData',dataTable)
     console.log('typeDoc', dataTable.type[0].id)
     //debugger;
@@ -42,7 +36,7 @@ const TableData = ({dataTable, actionRow}) => {
                         dataTable.control.map(el => {
                                 // className={'table-danger'}
                                 return (  
-                                    <tr key={el.id} > 
+                                    <tr key={el.id} onClick={ ()=>setActionRow(el) }> 
                                     {                 
                                         el.id === actionRow.id 
                                             ? <td>
