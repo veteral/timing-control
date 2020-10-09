@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './HeaderData.module.css';
-import ButtonData from "../ButtonData/ButtonData";
+//import ButtonData from "../ButtonData/ButtonData";
 
 const HeaderData = (props) => {
     // let groupButtonsElements = props.blockOfButtons.map((b, index) => <ButtonData   key={index} 
@@ -8,6 +8,7 @@ const HeaderData = (props) => {
     //                                                                                 title={b.title} 
     //                                                                                 showModal={b.showModal} />);
 
+    console.log('HeaderData');
     return (
         <div className={s.headerData}>
             <div className={s.headerTitle}>

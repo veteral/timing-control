@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './TableData.module.css';
-import actionRow from '../../../../img/next.png';
+import next from '../../../../img/next.png';
 
 
-const TableData = (props) => {
+const TableData = ({dataTable}) => {
+    const [actionRow, setActionRow] = useState(dataTable.control[0]);
     const tableTitle = [
         ' ', 
         'Номер документа', 
@@ -19,7 +20,8 @@ const TableData = (props) => {
     //     <th key={index}>{el}</th>                    
     // );
 
-    console.log('Props',props)
+    //debugger;
+    console.log('Props TableData',dataTable)
     
 
     return (
@@ -35,19 +37,19 @@ const TableData = (props) => {
                 </thead>
                 <tbody>
                     {                        
-                        props.dataTable &&
-                            props.dataTable.control.map(el => {
+                        
+                            dataTable.control.map(el => {
                                 // className={'table-danger'}
                                 return (  
                                     <tr>           
                                     {/* <tr key={el.id} onClick={props.clickRowTable.bind(null, el)}> */}
-                                    {/* {                 
-                                        el.id === props.actionRow.id 
+                                    {                 
+                                        el.id === actionRow.id 
                                             ? <td>
-                                                <img src={actionRow} className={s.img} />
+                                                <img src={next} className={s.img} alt='next' />
                                             </td> 
                                             : <td>&nbsp;</td> 
-                                    } */}
+                                    }
                                     <td>{el.numDoc}</td>
                                     <td>{el.dataDoc}</td>
                                     <td>{el.executorDoc}</td>

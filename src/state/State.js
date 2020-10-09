@@ -11,7 +11,8 @@ export const State = ({children}) => {
   const URL = 'http://localhost:5000/';
 
   const initialState = {
-    data: [],
+    data: {},
+    actionRow: {}
     //loading: false
   }
   const [state, dispatch] = useReducer(stateReducer, initialState);
@@ -20,10 +21,16 @@ export const State = ({children}) => {
   const getData = async () => {
     //showLoader()    
     const data = await request(URL); 
+    const action = data.control[0];
 
-    console.log('data fetch', data);
+    const payload = {
+      ...data,
+      actionRow: action
+    }
 
-    dispatch({type: DATA, data});
+    console.log('data fetch', payload);
+
+    dispatch({type: DATA, payload});
   }
 
   //записываем данные в файл после изменений данных - 
