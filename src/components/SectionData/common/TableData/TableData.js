@@ -15,8 +15,8 @@ const TableData = ({dataTable, actionRow, setActionRow}) => {
         'Тип документа',
     ];
     
-    console.log('Props TableData',dataTable)
-    console.log('typeDoc', dataTable.type[0].id)
+    //console.log('Props TableData',dataTable)
+    //console.log('typeDoc', dataTable.type[0].id)
     //debugger;
     
 

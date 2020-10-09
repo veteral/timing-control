@@ -14,17 +14,25 @@ const Control = () => {
     const titleSection = 'Документы на контроле:';
     const {data, getData, setActionRow} = useContext(StateContext); 
        
-    const [isModal, setModal] = useState(true);   
+    const [isModal, setModal] = useState(false);   
 
     useEffect(() => {
-        getData();            
+        getData();   
+        // размонтировать компонент         
     }, []);
     
-    console.log('Control DATA', JSON.stringify(data.actionRow));
+    //console.log('Control DATA', JSON.stringify(data.actionRow));
+    //console.log('isModal', isModal);
+
+    const showModal = () => {
+        setModal(isModal === false ? true : false);
+    }
+
     console.log('isModal', isModal);
 
     return (
         <>
+            <button onClick={showModal}>Click</button>
             <HeaderData title={titleSection} />                      
             { 
                 data.control && 
@@ -35,11 +43,12 @@ const Control = () => {
                     />                 
             }
             { 
-                // isModal && 
-                //     <Modal                    
-                //         showModal={isModal}                        
-                //     />
-                }       
+                 
+                    <Modal                    
+                        showModal={showModal}
+                        show={isModal}                        
+                    />
+            }       
             
         </>
     );
