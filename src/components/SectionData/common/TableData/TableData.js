@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import s from './TableData.module.css';
-import actionRow from '../../../../img/next.png';
+import next from '../../../../img/next.png';
 
 
-const TableData = (props) => {
+const TableData = ({dataTable, actionRow, setActionRow}) => {    
     const tableTitle = [
         ' ', 
         'Номер документа', 
@@ -14,33 +14,11 @@ const TableData = (props) => {
         'Дополнительная информация',
         'Тип документа',
     ];
-
-    // const tableHeaderElements = tableTitle.map((el, index) =>                           
-    //     <th key={index}>{el}</th>                    
-    // );
-
-    const tableBodyElements = props.dataTable.map(el => {
-        // className={'table-danger'}
-        return (             
-            <tr key={el.id} onClick={props.clickRowTable.bind(null, el)}>
-            {                 
-                el.id === props.actionRow.id 
-                    ? <td>
-                        <img src={actionRow} className={s.img} />
-                    </td> 
-                    : <td>&nbsp;</td> 
-            }
-            <td>{el.numDoc}</td>
-            <td>{el.dataDoc}</td>
-            <td>{el.executorDoc}</td>
-            <td>{el.executionData}</td>
-            <td>{el.header}</td>
-            <td>{el.addInformation}</td>
-            <td>{el.typeDoc}</td>            
-        </tr>
-        );
-        
-    });
+    
+    //console.log('Props TableData',dataTable)
+    //console.log('typeDoc', dataTable.type[0].id)
+    //debugger;
+    
 
     return (
         <>        
@@ -54,7 +32,38 @@ const TableData = (props) => {
                    </tr>
                 </thead>
                 <tbody>
-                    {tableBodyElements}
+                    {                        
+                        dataTable.control.map(el => {
+                                // className={'table-danger'}
+                                return (  
+                                    <tr key={el.id} onClick={ ()=>setActionRow(el) }> 
+                                    {                 
+                                        el.id === actionRow.id 
+                                            ? <td>
+                                                <img src={next} className={s.img} alt='next' />
+                                            </td> 
+                                            : <td>&nbsp;</td> 
+                                    }
+                                    <td>{el.numDoc}</td>
+                                    <td>{el.dataDoc}</td>
+                                    <td>
+                                        {
+                                            dataTable.execution.find(f => f.id === el.executorDoc).name
+                                        }
+                                    </td>
+                                    <td>{el.executionData}</td>
+                                    <td>{el.header}</td>
+                                    <td>{el.addInformation}</td>
+                                    <td>
+                                        {
+                                            dataTable.type.find(f => f.id === el.typeDoc).name
+                                        }
+                                    </td>            
+                                </tr>
+                                );
+                                
+                            })
+                    }
                 </tbody>
             </table>
         </>

@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
+const { getData } = require('./module/server-module');
 
 const app = express();
 
@@ -12,19 +13,30 @@ app.use((req, res, next) => {
     next();
 });
 
+const path = './json/data/';    //путь к данным
 /*
  получение данных control
  */
 app.get('/', (req, res, next) => {
-       
-  const control = JSON.parse(fs.readFileSync('./src/json/data/control.json', 'utf8'));    
-  const execution = JSON.parse(fs.readFileSync('./src/json/data/execution.json', 'utf8'));
-  const type = JSON.parse(fs.readFileSync('./src/json/data/type.json', 'utf8'));
+         
+  //const control = getData(path + 'control.json');    
+  //const execution = getData(path + 'execution.json');
+  //const type = getData(path + 'type.json');
   
-  const data = {control, execution, type};
-  
+  //const data = {control, execution, type};
+  const data = getData(path + 'data.json');
+  //console.log('data', data);
+
   res.send(data);  
 });
+
+app.post('/', (req, res, next) => {
+  const data = { ...req.body }
+  console.log('req.body', data);
+
+  if (!req.body) return res.sendStatus(400);
+});
+
 
 app.listen(5000, () => {
   console.log('Сервер ожидает подключения...');

@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import s from './SectionData.module.css';
 import About from './About/About';
 import Control from './Control/Control';
-import AllDocuments from './AllDocuments/AllDocuments';
+import ExecDocuments from './ExecDocuments/ExecDocuments';
 import TypeOfDocument from './TypeOfDocument/TypeOfDocument';
 import Executor from './Executor/Executor';
 import Print from './common/Print/Print';
@@ -15,7 +15,7 @@ const SectionData = () => {
             <Route exact path='/'
                 render={() => <Control />} />
             <Route path='/all'
-                render={() => <AllDocuments />} />
+                render={() => <ExecDocuments />} />
             <Route path='/type'
                 render={() => <TypeOfDocument />} />
             <Route path='/executor'

@@ -10,7 +10,7 @@ import MasterDataGroup from './groups/MasterDataGroup';
 import AdditionalDataGroup from './groups/AdditionalDataGroup';
 
 
-const ModalForm = (props) => {
+const ModalForm = ( {showModal, show, setData } ) => {
 
   const dropdownOptions = [
     { key: 'Select an option', value: '' },
@@ -18,6 +18,8 @@ const ModalForm = (props) => {
     { key: 'Option 2', value: 'option2' },
     { key: 'Option 3', value: 'option3' }
   ];
+
+  console.log('Modal - render');
 
   return (
     <>
@@ -33,6 +35,7 @@ const ModalForm = (props) => {
         }}
         onSubmit={(values) => {
           console.log('Submit', values);
+          setData(values);
         }}        
       >
 
@@ -43,9 +46,9 @@ const ModalForm = (props) => {
         }) => (
             <Modal
               size="lg"
-              show={true}
-              // show={props.showModal}
-              onHide={props.showModal}
+              //show={true}
+              show={show}
+              onHide={showModal}
               backdrop="static"
               keyboard={false}
             >
@@ -61,7 +64,7 @@ const ModalForm = (props) => {
                 </Modal.Body>
 
                 <Modal.Footer>
-                  <Button variant="secondary" onClick={props.showModal}>
+                  <Button variant="secondary" onClick={showModal}>
                     Закрыть
                   </Button>
                   <Button type='submit' variant="primary">
