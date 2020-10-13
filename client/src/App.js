@@ -1,26 +1,38 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {BrowserRouter, Route} from 'react-router-dom'
+import Control from './page/Control';
+import ExecutedDocuments from './page/ExecutedDocuments';
+import TypeOfDocument from './page/TypeOfDocument';
+import Employee from './page/Employee';
+import About from './page/About';
+import Print from './page/Print';
+import Navbar from './components/Navbar';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      
+        <BrowserRouter>
+          <Navbar />  
+          <div className={'data'}>
+            <Route exact path='/'
+                render={() => <Control />} />
+            <Route path='/all'
+                render={() => <ExecutedDocuments />} />
+            <Route path='/type'
+                render={() => <TypeOfDocument />} />
+            <Route path='/executor'
+                render={() => <Employee />} />
+            <Route path='/about'
+                render={() => <About />} />
+            <Route path='/print'
+                render={() => <Print />} />
+        </div>     
+        </BrowserRouter>
+        
+    </>  
   );
 }
 
-export default App;
+export default App; 
