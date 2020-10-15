@@ -8,28 +8,30 @@ import Employee from './page/Employee';
 import About from './page/About';
 import Print from './page/Print';
 import Navbar from './components/Navbar';
+import DBState from './context/DBState';
 
 const App = () => {
   return (
     <>
-      
-        <BrowserRouter>
-          <Navbar />  
-          <div className={'data'}>
-            <Route exact path='/'
-                render={() => <Control />} />
-            <Route path='/all'
-                render={() => <ExecutedDocuments />} />
-            <Route path='/type'
-                render={() => <TypeOfDocument />} />
-            <Route path='/executor'
-                render={() => <Employee />} />
-            <Route path='/about'
-                render={() => <About />} />
-            <Route path='/print'
-                render={() => <Print />} />
-        </div>     
-        </BrowserRouter>
+        <DBState>
+            <BrowserRouter>
+                <Navbar />  
+                <div className={'data'}>
+                    <Route exact path='/'
+                        render={() => <Control />} />
+                    <Route path='/all'
+                        render={() => <ExecutedDocuments />} />
+                    <Route path='/type'
+                        render={() => <TypeOfDocument />} />
+                    <Route path='/executor'
+                        render={() => <Employee />} />
+                    <Route path='/about'
+                        render={() => <About />} />
+                    <Route path='/print'
+                        render={() => <Print />} />
+                </div>     
+            </BrowserRouter>
+        </DBState>
         
     </>  
   );

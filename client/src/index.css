@@ -12,6 +12,14 @@ code {
     monospace;
 }
 
+tr {
+  cursor: pointer;
+}
+
+.arrow {
+  width: 10px;
+}
+
 .navbar {
   padding: 0 50px;
 }
@@ -23,5 +31,28 @@ code {
 
 .data {
   padding: 0 50px;
+}
+
+.data__header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;  
+  background-color: white;  
+  position: sticky;
+  top: 0;  
+}
+
+.data__title {
+  display: flex;
+  align-items: center;
+}
+
+.data__title h2 {
+  margin: 0;
+}
+
+.data__btn-group {
+  display: flex;
+  justify-content: flex-end;
 }
 
