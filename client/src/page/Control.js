@@ -39,6 +39,7 @@ const Control = () => {
           {data.control.map(el => <li>{el.id}</li>)}
     </ul>          
 }
+{/* <button onClick={setData}>Click</button> */}
         
             {/* <button onClick={showModal}>Click</button>
             <HeaderData title={titleSection} />                      

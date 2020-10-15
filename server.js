@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { getData } = require('./module/server-module');
+const { getData, setData } = require('./module/server-module');
+//const {file} = require('./module/setting');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -12,18 +13,26 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const pathToData = './data/';    //путь к данным
 
+
+/**
+ * GET method
+ */
 app.get('/api/data', (req, res) => {
   const data = getData(pathToData + 'data.json');
-  console.log('GET');
+  console.log('GET', file);
   //data = [{a: 1}];
   res.send(JSON.stringify(data));
 });
 
+/**
+ * POST method
+ */
 app.post('/api/data', (req, res) => {
   console.log(req.body);
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`,
-  );
+  setData(pathToData + 'data.json', req.body)
+  // res.send(
+  //   `I received your POST request. This is what you sent me: ${req.body.post}`,
+  // );
 });
 
 //console.log('GET', getData(pathToData + 'data.json'));

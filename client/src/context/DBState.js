@@ -53,9 +53,9 @@ export const DBState = ({children}) => {
     //debugger;
     console.log('data post - OLD', data);
 
-    const datapost = {a: 1}
+    const datapost = {id: 5}
 
-    const newData = await request(URL, 'POST', datapost);     
+    const newData = await request('/api/data', 'POST', datapost);     
 
     console.log('data post - NEW', newData);
     
