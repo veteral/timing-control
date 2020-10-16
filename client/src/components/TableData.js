@@ -2,37 +2,31 @@ import React from 'react';
 import arrow from '../img/next.png';
 
 
-const TableData = ({dataTable, actionRow, setActionRow}) => {    
-    const tableTitle = [
-        ' ', 
-        'Номер документа', 
-        'Дата регистрации', 
-        'Исполнитель',
-        'Дата исполнения',        
-        'Заголовок',
-        'Дополнительная информация',
-        'Тип документа',
-    ];
+const TableData = ({ title, 
+                     data, 
+                     actionRow, 
+                     setActionRow 
+                    }) => {    
     
-    //console.log('Props TableData',dataTable)
-    //console.log('typeDoc', dataTable.type[0].id)
-    //debugger;
+    //const control = data.control;
     
-
+    //control.sort((a, b) => {a.executionDate - b.executionDate});
+    //console.log('Control to sort', control);
+                        
     return (
         <>        
             <table className="table">
                 <thead className="thead-light">
                    <tr>
                         {
-                            tableTitle.map((el, index) =>                           
+                            title.map((el, index) =>                           
                                 <th key={index}>{el}</th>)
                         }
                    </tr>
                 </thead>
                 <tbody>
                     {                        
-                        dataTable.control.map(el => {
+                        data.control.map(el => {
                                 // className={'table-danger'}
                                 return (  
                                     <tr key={el.id} onClick={ ()=>setActionRow(el) }> 
@@ -43,19 +37,19 @@ const TableData = ({dataTable, actionRow, setActionRow}) => {
                                             </td> 
                                             : <td>&nbsp;</td> 
                                     }
-                                    <td>{el.numDoc}</td>
-                                    <td>{el.dataDoc}</td>
+                                    <td>{el.numberDoc}</td>
+                                    <td>{el.dateDoc}</td>
                                     <td>
                                         {
-                                            dataTable.execution.find(f => f.id === el.executorDoc).name
+                                            data.employee.find(f => f.id === el.employee).name
                                         }
                                     </td>
-                                    <td>{el.executionData}</td>
-                                    <td>{el.header}</td>
-                                    <td>{el.addInformation}</td>
+                                    <td>{el.executionDate}</td>
+                                    <td>{el.title}</td>
+                                    <td>{el.text}</td>
                                     <td>
                                         {
-                                            dataTable.type.find(f => f.id === el.typeDoc).name
+                                            data.type.find(f => f.id === el.typeDoc).name
                                         }
                                     </td>            
                                 </tr>

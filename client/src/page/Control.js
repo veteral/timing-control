@@ -12,16 +12,28 @@ import TableData from '../components/TableData';
 
 const Control = () => {
     const titleSection = 'Документы на контроле:';
+    const tableTitle = [
+        ' ', 
+        'Номер документа', 
+        'Дата регистрации', 
+        'Исполнитель',
+        'Дата исполнения',        
+        'Заголовок',
+        'Дополнительная информация',
+        'Тип документа',
+    ];
+
      const { data, 
              getData, 
              setActionRow, 
-             setData} = useContext(DBContext); 
+             setData } = useContext(DBContext); 
        
     //const [isModal, setModal] = useState(false);   
 
     useEffect(() => {
       
-        getData();           
+        getData();   
+        // eslint-disable-next-line        
        
     }, []);
 
@@ -30,38 +42,26 @@ const Control = () => {
     // }
 
     //console.log('Data Control', JSON.stringify(data));
-
-    const el = {
-      "id": 2,
-      "numberDoc": "01/11/22",
-      "dateDoc": "10.10.2020",
-      "employee": 2,
-      "executionDate": "10.10.2020",
-      "title": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
-      "text": "ввававав аыыаыаыаыа",
-      "typeDoc": 2
-  };
+    
+        //const control = data.control;
+        //console.log('Control sort start', control);
+        //data.control.sort((a, b) => new Date(a.dateDoc) - new Date(b.dateDoc));
+        //console.log('Control sort end', control);            
+   
 
     return (
-        <>  
-{
-  data.control &&
-      <ul>
-          {data.control.map(el => <li>{el.id}</li>)}
-    </ul>          
-}
-<button onClick={() => setData(data, el)}>Click</button>
-        
-            {/* <button onClick={showModal}>Click</button>
+        <>         
+            {/* <button onClick={showModal}>Click</button> */}
             <HeaderData title={titleSection} />                      
             { 
                 data.control && 
                     <TableData
-                        dataTable={data}
+                        title={tableTitle}
+                        data={data}
                         actionRow={data.actionRow}
                         setActionRow={setActionRow}
                     />                 
-            } */}
+            }
             { 
                 // <Modal                    
                 //     showModal={showModal}

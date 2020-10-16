@@ -23,8 +23,9 @@ export const DBState = ({children}) => {
    */  
   const getData = async () => {
       
-    const data = await request('/api/data');  
-            
+    const data = await request('/api/data'); 
+    
+    data.control.sort((a, b) => new Date(a.dateDoc) - new Date(b.dateDoc));            
     const actionRow = data.control[0];    
     const payload = {
        ...data,
@@ -39,11 +40,6 @@ export const DBState = ({children}) => {
     * добавления, изменения или удаления    * 
     */  
   const setData = async (data, el) => {
-    
-    console.log('data post - OLD', data);
-
-    //const datapost = {id: 5}
-    el.id++
     const payload = {
       ...data,
       control: [...data.control, el]
