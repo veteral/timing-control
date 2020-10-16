@@ -19,48 +19,49 @@ export const DBState = ({children}) => {
   const [state, dispatch] = useReducer(DBReducer, initialState);
  
   /**************************************************
-   * получаем json данные из файла 
+   * GET запрос 
    */  
   const getData = async () => {
-        
-    const response = await fetch('/api/data');     
-    const data = await response.json();   
-    
-    const actionRow = data.control[0];
-    
+      
+    const data = await request('/api/data');  
+            
+    const actionRow = data.control[0];    
     const payload = {
-      ...data,
-      actionRow
+       ...data,
+       actionRow
     }
     
+    dispatch({type: DATA, payload});
+  }
+   /**************************************************
+    * POST запрос
+    * записываем данные в файл после изменений данных -
+    * добавления, изменения или удаления    * 
+    */  
+  const setData = async (data, el) => {
+    
+    console.log('data post - OLD', data);
+
+    //const datapost = {id: 5}
+    el.id++
+    const payload = {
+      ...data,
+      control: [...data.control, el]
+    }
+
+    const newData = await request('/api/data', 'POST', payload);     
+
+    console.log('data post - NEW', payload);
+    
+
     dispatch({type: DATA, payload});
   }
 
   /**************************************************
    * получаем активную строку по клику 
    */
-   const setActionRow = tr => {
-     dispatch({type: SET_ACTION_ROW, tr});
-   }
-
-   /**************************************************
-    * записываем данные в файл после изменений данных -
-    * добавления, изменения или удаления
-    */  
-  const setData = async (data) => {
-    // const response = await fetch(URL);
-    // const data = await response
-    //debugger;
-    console.log('data post - OLD', data);
-
-    const datapost = {id: 5}
-
-    const newData = await request('/api/data', 'POST', datapost);     
-
-    console.log('data post - NEW', newData);
-    
-
-    //dispatch({type: DATA, newData});
+  const setActionRow = tr => {
+    dispatch({type: SET_ACTION_ROW, tr});
   }
 
   /**************************************************
@@ -76,7 +77,7 @@ export const DBState = ({children}) => {
         body = JSON.stringify(data);
       }
 
-      console.log('BODY', body);
+      //console.log('BODY', body);
   
       const response = await fetch(url, {
         method,

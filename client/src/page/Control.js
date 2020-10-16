@@ -31,6 +31,17 @@ const Control = () => {
 
     //console.log('Data Control', JSON.stringify(data));
 
+    const el = {
+      "id": 2,
+      "numberDoc": "01/11/22",
+      "dateDoc": "10.10.2020",
+      "employee": 2,
+      "executionDate": "10.10.2020",
+      "title": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
+      "text": "ввававав аыыаыаыаыа",
+      "typeDoc": 2
+  };
+
     return (
         <>  
 {
@@ -39,7 +50,7 @@ const Control = () => {
           {data.control.map(el => <li>{el.id}</li>)}
     </ul>          
 }
-{/* <button onClick={setData}>Click</button> */}
+<button onClick={() => setData(data, el)}>Click</button>
         
             {/* <button onClick={showModal}>Click</button>
             <HeaderData title={titleSection} />                      

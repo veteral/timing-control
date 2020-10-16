@@ -19,9 +19,9 @@ const pathToData = './data/';    //путь к данным
  */
 app.get('/api/data', (req, res) => {
   const data = getData(pathToData + 'data.json');
-  console.log('GET', file);
-  //data = [{a: 1}];
-  res.send(JSON.stringify(data));
+  //console.log('GET', data);
+  //data = {a: 1};
+  res.json(data);
 });
 
 /**
@@ -30,9 +30,7 @@ app.get('/api/data', (req, res) => {
 app.post('/api/data', (req, res) => {
   console.log(req.body);
   setData(pathToData + 'data.json', req.body)
-  // res.send(
-  //   `I received your POST request. This is what you sent me: ${req.body.post}`,
-  // );
+  res.json(req.body);
 });
 
 //console.log('GET', getData(pathToData + 'data.json'));
