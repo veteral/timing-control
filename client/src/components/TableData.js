@@ -38,13 +38,13 @@ const TableData = ({ title,
                                             : <td>&nbsp;</td> 
                                     }
                                     <td>{el.numberDoc}</td>
-                                    <td>{el.dateDoc}</td>
+                                    <td>{new Date(el.dateDoc).toLocaleDateString('en-GB')}</td>
                                     <td>
                                         {
                                             data.employee.find(f => f.id === el.employee).name
                                         }
                                     </td>
-                                    <td>{el.executionDate}</td>
+                                    <td>{new Date(el.executionDate).toLocaleDateString('en-GB')}</td>
                                     <td>{el.title}</td>
                                     <td>{el.text}</td>
                                     <td>
