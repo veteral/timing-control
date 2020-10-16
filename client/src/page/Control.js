@@ -7,7 +7,7 @@ import React,
 import { DBContext } from '../context/DBContext';
 import HeaderData from '../components/HeaderData';
 import TableData from '../components/TableData';
-//import Modal from '../common/Modal/Modal';
+import Modal from '../components/Modal';
 
 
 const Control = () => {
@@ -28,7 +28,7 @@ const Control = () => {
              setActionRow, 
              setData } = useContext(DBContext); 
        
-    //const [isModal, setModal] = useState(false);   
+    const [isModal, setModal] = useState(false);   
 
     useEffect(() => {
       
@@ -37,9 +37,9 @@ const Control = () => {
        
     }, []);
 
-    // const showModal = () => {
-    //     setModal(isModal === false ? true : false);
-    // }
+    const showModal = () => {
+        setModal(isModal === false ? true : false);
+    }
 
     //console.log('Data Control', JSON.stringify(data));
     
@@ -51,7 +51,7 @@ const Control = () => {
 
     return (
         <>         
-            {/* <button onClick={showModal}>Click</button> */}
+            <button onClick={showModal}>Click</button>
             <HeaderData title={titleSection} />                      
             { 
                 data.control && 
@@ -63,11 +63,11 @@ const Control = () => {
                     />                 
             }
             { 
-                // <Modal                    
-                //     showModal={showModal}
-                //     show={isModal}  
-                //     setData={setData}                      
-                // />
+                <Modal                    
+                    showModal={showModal}
+                    show={isModal}  
+                    setData={setData}                      
+                />
             }       
             
         </>

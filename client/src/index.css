@@ -56,3 +56,9 @@ tr {
   justify-content: flex-end;
 }
 
+.modal-header {  
+  background-color: #007bff;  
+  color: #fff;  
+}
+
+
