@@ -7,7 +7,7 @@ import React,
 import { DBContext } from '../context/DBContext';
 import HeaderData from '../components/HeaderData';
 import TableData from '../components/TableData';
-import Modal from '../components/Modal';
+import Modal from '../components/Modal/Modal';
 
 
 const Control = () => {
@@ -41,17 +41,10 @@ const Control = () => {
         setModal(isModal === false ? true : false);
     }
 
-    //console.log('Data Control', JSON.stringify(data));
-    
-        //const control = data.control;
-        //console.log('Control sort start', control);
-        //data.control.sort((a, b) => new Date(a.dateDoc) - new Date(b.dateDoc));
-        //console.log('Control sort end', control);            
-   
-
     return (
         <>         
-            <button onClick={showModal}>Click</button>
+            <button onClick={showModal}>Big</button>
+            <button onClick={showModal}>small</button>
             <HeaderData title={titleSection} />                      
             { 
                 data.control && 
@@ -66,7 +59,8 @@ const Control = () => {
                 <Modal                    
                     showModal={showModal}
                     show={isModal}  
-                    setData={setData}                      
+                    setData={setData}  
+                    type={'big'}                    
                 />
             }       
             

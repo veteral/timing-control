@@ -32,10 +32,10 @@ const TableData = ({ title,
                                     <tr key={el.id} onClick={ ()=>setActionRow(el) }> 
                                     {                 
                                         el.id === actionRow.id 
-                                            ? <td>
-                                                <img src={arrow} className={'arrow'} alt='arrow' />
-                                            </td> 
-                                            : <td>&nbsp;</td> 
+                                            ?   <td>
+                                                    <img src={arrow} className={'arrow'} alt='arrow' />
+                                                </td> 
+                                            :   <td>&nbsp;</td> 
                                     }
                                     <td>{el.numberDoc}</td>
                                     <td>{new Date(el.dateDoc).toLocaleDateString('en-GB')}</td>

@@ -1,40 +1,43 @@
 import React from 'react';
-import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
+import { Modal, Button, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 
-// import Select from './groupElements/Select/Select';
-// import DatePicker from './FormGroup/controls/DatePicker/DatePiker';
-
-//import MasterDataGroup from './groups/MasterDataGroup';
-//import AdditionalDataGroup from './groups/AdditionalDataGroup';
+import BigForm from './forms/BigForm';
+import SmallForm from './forms/SmallForm';
 
 
-const ModalForm = ( {showModal, show, setData } ) => {
+const ModalForm = ( {showModal, show, setData, type } ) => {
 
-  const dropdownOptions = [
-    { key: 'Select an option', value: '' },
-    { key: 'Option 1', value: 'option1' },
-    { key: 'Option 2', value: 'option2' },
-    { key: 'Option 3', value: 'option3' }
-  ];
-
-  console.log('Modal - render');
+  //console.log('Modal - render');
+  let formValues = {};
+  //debugger;
+  if(type === 'big') {
+    formValues =  {
+        numberDoc: '',
+        dateDoc: null,
+        employee: 0,
+        executionDate: null,
+        title: '',
+        text: '',
+        typeDoc: 0
+    };    
+  } else if(type === 'small') {
+    formValues = {
+      name: ''
+    };
+  } else {
+      console.log('Не могу определить тип отображаемой формы');
+      return null;
+    }
 
   return (
     <>
       <Formik
-        initialValues={{
-          beginDate: null,
-          numberDoc: '',
-          endDate: null,
-          type: 'Письмо111',
-          executor: '',
-          title: '',
-          text: ''
-        }}
-        onSubmit={(values) => {
-          console.log('Submit', values);
-          setData(values);
+        initialValues={formValues} 
+        onSubmit={(values) => {          
+          console.log(values);
+          showModal();
+          //setData(values);
         }}        
       >
 
@@ -58,8 +61,15 @@ const ModalForm = ( {showModal, show, setData } ) => {
                 </Modal.Header>
 
                 <Modal.Body>
-                  {/* <MasterDataGroup /> */}
-                  {/* <AdditionalDataGroup /> */}
+                  
+                  { 
+                    type === 'big' 
+                    ? <BigForm />
+                    : <SmallForm />   
+                  } 
+
+                  {/* <SmallForm /> */}
+                  
                 </Modal.Body>
 
                 <Modal.Footer>
@@ -80,6 +90,5 @@ const ModalForm = ( {showModal, show, setData } ) => {
     </>
   );
 }
-
 
 export default ModalForm;
