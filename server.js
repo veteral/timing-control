@@ -1,43 +1,48 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
-const fs = require('fs');
-const { getData } = require('./module/server-module');
+const { getData, setData } = require('./module/server-module');
+//const {file} = require('./module/setting');
 
 const app = express();
+const port = process.env.PORT || 5000;
 
-// подключаем заголовки, чтобы можно было сделать запрос
-// на сторонний ресурс (адрес)
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
 
-const path = './json/data/';    //путь к данным
-/*
- получение данных control
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const pathToData = './data/';    //путь к данным
+
+
+/**
+ * GET method
  */
-app.get('/', (req, res, next) => {
-         
-  //const control = getData(path + 'control.json');    
-  //const execution = getData(path + 'execution.json');
-  //const type = getData(path + 'type.json');
-  
-  //const data = {control, execution, type};
-  const data = getData(path + 'data.json');
-  //console.log('data', data);
-
-  res.send(data);  
+app.get('/api/data', (req, res) => {
+  const data = getData(pathToData + 'data.json');
+  //console.log('GET', data);
+  //data = {a: 1};
+  res.json(data);
 });
 
-app.post('/', (req, res, next) => {
-  const data = { ...req.body }
-  console.log('req.body', data);
-
-  if (!req.body) return res.sendStatus(400);
+/**
+ * POST method
+ */
+app.post('/api/data', (req, res) => {
+  console.log(req.body);
+  setData(pathToData + 'data.json', req.body)
+  res.json(req.body);
 });
 
+//console.log('GET', getData(pathToData + 'data.json'));
 
-app.listen(5000, () => {
-  console.log('Сервер ожидает подключения...');
-});
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'client/build')));
+
+  // Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
+
+app.listen(port, () => console.log(`Сервер запущен на порту ${port}`));

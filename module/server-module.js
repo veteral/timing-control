@@ -19,7 +19,7 @@ module.exports.getData = (nameFile) => {
  */
 module.exports.setData = (nameFile, data) => {
     try {
-        fs.writeFileSync(nameFile, data, 'utf8');
+        fs.writeFileSync(nameFile, JSON.stringify(data), 'utf8');
     } catch (e) {
         console.log(`Ошибка записи в файл ${nameFile}`)
     }
