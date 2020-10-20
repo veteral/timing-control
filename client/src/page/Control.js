@@ -8,6 +8,7 @@ import { DBContext } from '../context/DBContext';
 import HeaderData from '../components/HeaderData';
 import TableData from '../components/TableData';
 import Modal from '../components/Modal/Modal';
+import { BIG } from '../context/type';
 
 
 const Control = () => {
@@ -29,6 +30,19 @@ const Control = () => {
              setData } = useContext(DBContext); 
        
     const [isModal, setModal] = useState(false);   
+
+    const dataForm = {
+        type: BIG,
+        values: {
+            numberDoc: '15',
+            dateDoc: null,
+            employee:  '',
+            executionDate: new Date('Sat Oct 15 2020 12:53:20 GMT+0300 (Eastern European Summer Time)'),
+            title: 'title',
+            text: 'text',
+            typeDoc: 0
+        }
+    }
 
     useEffect(() => {
       
@@ -59,8 +73,8 @@ const Control = () => {
                 <Modal                    
                     showModal={showModal}
                     show={isModal}  
-                    setData={setData}  
-                    type={'big'}                    
+                    setData={setData}                      
+                    dataForm={dataForm}                    
                 />
             }       
             

@@ -4,36 +4,46 @@ import { Formik } from 'formik';
 
 import BigForm from './forms/BigForm';
 import SmallForm from './forms/SmallForm';
+import { BIG } from '../../context/type';
 
 
-const ModalForm = ( {showModal, show, setData, type } ) => {
+const ModalForm = ( {showModal, show, setData, dataForm } ) => {
 
-  //console.log('Modal - render');
-  let formValues = {};
+  console.log('dataForms.Values', dataForm.values);
+  //let formValues = {};
   //debugger;
-  if(type === 'big') {
-    formValues =  {
-        numberDoc: '',
-        dateDoc: null,
-        employee: 0,
-        executionDate: null,
-        title: '',
-        text: '',
-        typeDoc: 0
-    };    
-  } else if(type === 'small') {
-    formValues = {
-      name: ''
-    };
-  } else {
-      console.log('Не могу определить тип отображаемой формы');
-      return null;
-    }
+  // if(type === 'big') {
+  //   formValues =  {
+  //       numberDoc: '',
+  //       dateDoc: null,
+  //       employee: 0,
+  //       executionDate: null,
+  //       title: '',
+  //       text: '',
+  //       typeDoc: 0
+  //   };    
+  // } else if(type === 'small') {
+  //   formValues = {
+  //     name: ''
+  //   };
+  // } else {
+  //     console.log('Не могу определить тип отображаемой формы');
+  //     return null;
+  //   }
 
   return (
     <>
       <Formik
-        initialValues={formValues} 
+        // initialValues={dataForm.values} 
+        initialValues={dataForm.values
+          // {numberDoc: '15',
+          // dateDoc: null,
+          // employee:  '',
+          // executionDate: new Date('Sat Oct 13 2020 12:53:20 GMT+0300 (Eastern European Summer Time)'),
+          // title: 'title',
+          // text: 'text',
+          // typeDoc: 0}
+        }
         onSubmit={(values) => {          
           console.log(values);
           showModal();
@@ -63,8 +73,8 @@ const ModalForm = ( {showModal, show, setData, type } ) => {
                 <Modal.Body>
                   
                   { 
-                    type === 'big' 
-                    ? <BigForm />
+                    dataForm.type === BIG 
+                    ? <BigForm values={values} />
                     : <SmallForm />   
                   } 
 

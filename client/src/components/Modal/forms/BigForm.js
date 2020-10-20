@@ -13,7 +13,9 @@ const BigForm = (props) => {
         { key: 'Option 1', value: 'option1' },
         { key: 'Option 2', value: 'option2' },
         { key: 'Option 3', value: 'option3' }
-      ];   
+      ]; 
+      
+      console.log('Big Form - values', props.values);
     
     return (
         <>
