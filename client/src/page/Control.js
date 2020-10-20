@@ -8,7 +8,9 @@ import { DBContext } from '../context/DBContext';
 import HeaderData from '../components/HeaderData';
 import TableData from '../components/TableData';
 import Modal from '../components/Modal/Modal';
+import ModalSmallForm from '../components/Modal/ModalSmallForm';
 import { BIG } from '../context/type';
+import BigForm from '../components/Modal/forms/BigForm';
 
 
 const Control = () => {
@@ -29,20 +31,7 @@ const Control = () => {
              setActionRow, 
              setData } = useContext(DBContext); 
        
-    const [isModal, setModal] = useState(false);   
-
-    const dataForm = {
-        type: BIG,
-        values: {
-            numberDoc: '15',
-            dateDoc: null,
-            employee:  '',
-            executionDate: new Date('Sat Oct 15 2020 12:53:20 GMT+0300 (Eastern European Summer Time)'),
-            title: 'title',
-            text: 'text',
-            typeDoc: 0
-        }
-    }
+    const [isModal, setModal] = useState(false);       
 
     useEffect(() => {
       
@@ -55,6 +44,17 @@ const Control = () => {
         setModal(isModal === false ? true : false);
     }
 
+    const dataForm = {
+            numberDoc: data.actionRow.numberDoc,
+            dateDoc: data.actionRow.dateDoc,
+            employee: data.actionRow.employee,
+            executionDate: data.actionRow.executionDate,
+            title: data.actionRow.title,
+            text: data.actionRow.text,
+            typeDoc: data.actionRow.typeDoc
+        }
+
+        console.log('DataForm', dataForm)
     return (
         <>         
             <button onClick={showModal}>Big</button>
@@ -70,12 +70,15 @@ const Control = () => {
                     />                 
             }
             { 
-                <Modal                    
-                    showModal={showModal}
-                    show={isModal}  
-                    setData={setData}                      
-                    dataForm={dataForm}                    
-                />
+                isModal &&
+                    <Modal                    
+                        showModal={showModal}
+                        show={isModal}  
+                        setData={setData}                      
+                        dataForm={dataForm}                    
+                    >
+                        <BigForm type={data.type} employee={data.employee} />
+                    </Modal>
             }       
             
         </>

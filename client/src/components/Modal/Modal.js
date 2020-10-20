@@ -2,63 +2,49 @@ import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 
+import Input from './elements/Input'
+
 import BigForm from './forms/BigForm';
 import SmallForm from './forms/SmallForm';
 import { BIG } from '../../context/type';
 
 
-const ModalForm = ( {showModal, show, setData, dataForm } ) => {
+const ModalForm = ( { children, showModal, show, setData, dataForm } ) => {
 
-  console.log('dataForms.Values', dataForm.values);
-  //let formValues = {};
-  //debugger;
-  // if(type === 'big') {
-  //   formValues =  {
-  //       numberDoc: '',
-  //       dateDoc: null,
-  //       employee: 0,
-  //       executionDate: null,
-  //       title: '',
-  //       text: '',
-  //       typeDoc: 0
-  //   };    
-  // } else if(type === 'small') {
-  //   formValues = {
-  //     name: ''
-  //   };
-  // } else {
-  //     console.log('Не могу определить тип отображаемой формы');
-  //     return null;
-  //   }
+  console.log('dataForms.Values', dataForm);
+  const {numberDoc, dateDoc, employee, executionDate, title, text, typeDoc} = dataForm;
+ 
+  const initialValues = {
+      numberDoc,
+      dateDoc: new Date(dateDoc),
+      employee,
+      executionDate: new Date(executionDate),
+      title,
+      text,
+      typeDoc
+  };
 
+  console.log('InitialValues', initialValues);    
+    
   return (
     <>
-      <Formik
-        // initialValues={dataForm.values} 
-        initialValues={dataForm.values
-          // {numberDoc: '15',
-          // dateDoc: null,
-          // employee:  '',
-          // executionDate: new Date('Sat Oct 13 2020 12:53:20 GMT+0300 (Eastern European Summer Time)'),
-          // title: 'title',
-          // text: 'text',
-          // typeDoc: 0}
-        }
+      <Formik        
+        initialValues={initialValues}       
+        
         onSubmit={(values) => {          
-          console.log(values);
+          console.log("SubmitValues", values);
           showModal();
           //setData(values);
         }}        
       >
-
         {({
           values, 
           handleChange,          
-          handleSubmit
-        }) => (
+          handleSubmit,          
+        }) => {            
+            return (
             <Modal
-              size="lg"
-              //show={true}
+              size="lg"              
               show={show}
               onHide={showModal}
               backdrop="static"
@@ -70,16 +56,8 @@ const ModalForm = ( {showModal, show, setData, dataForm } ) => {
                   <Modal.Title>Добавить элемент</Modal.Title>
                 </Modal.Header>
 
-                <Modal.Body>
-                  
-                  { 
-                    dataForm.type === BIG 
-                    ? <BigForm values={values} />
-                    : <SmallForm />   
-                  } 
-
-                  {/* <SmallForm /> */}
-                  
+                <Modal.Body>                  
+                  {children}                
                 </Modal.Body>
 
                 <Modal.Footer>
@@ -93,8 +71,9 @@ const ModalForm = ( {showModal, show, setData, dataForm } ) => {
 
               </Form>
             </Modal>
-
-          )}
+)
+          }
+          }
 
       </Formik>
     </>

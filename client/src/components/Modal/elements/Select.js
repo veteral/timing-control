@@ -7,11 +7,11 @@ function Select ( {name, label, options} ) {
   return (
     <>    
       <Form.Label>{label}</Form.Label> 
-      <Field as='select' id={name} name={name} className={`form-control`}>
+      <Field as='select' id={name} name={name} className={`form-control`}>      
         {options.map(option => {
           return (
-            <option key={option.value} value={option.value}>
-              {option.key}
+            <option key={option.id} id={option.id} value={option.id} >
+              {option.name}
             </option>
           )
         })}

@@ -9,10 +9,10 @@ import Select from '../elements/Select';
 const BigForm = (props) => {
 
     const dropdownOptions = [
-        { key: 'Select an option', value: '' },
-        { key: 'Option 1', value: 'option1' },
-        { key: 'Option 2', value: 'option2' },
-        { key: 'Option 3', value: 'option3' }
+        { id: 'Select an option', name: '' },
+        { id: 'Option 1', name: 'option1' },
+        { id: 'Option 2', name: 'option2' },
+        { id: 'Option 3', name: 'option3' }
       ]; 
       
       console.log('Big Form - values', props.values);
@@ -39,14 +39,15 @@ const BigForm = (props) => {
                     <Select                        
                         name='typeDoc'
                         label='Тип документа:'
-                        options={dropdownOptions}
+                        options={props.type}
+                        
                     />
                 </Form.Group>
                 <Form.Group as={Col} controlId="employee">                    
                     <Select                        
                         name='employee'
                         label='Ответственный исполнитель:'
-                        options={dropdownOptions}
+                        options={props.employee}
                     />
                 </Form.Group>
             </Form.Row>
