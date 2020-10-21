@@ -61,5 +61,35 @@ tr {
   color: #fff;  
 }
 
+.button {
+  display: flex;
+  justify-content: space-between;
+  align-self: center;
+
+  width: 60px;
+  height: 60px;
+
+  border-radius: 50%;
+}
+
+.button:hover {
+  background-color: rgba(232, 232, 232, 0.5);
+  transition: background-color 0.3s;
+}
+
+.button:active {
+  background-color: rgba(235, 235, 235, 0.3);
+  transition: background-color 0.3s;
+}
+
+.button-img {
+  width: 30px;
+  height: 30px;
+  margin: 15px;
+}
+
+
+
+
 
 

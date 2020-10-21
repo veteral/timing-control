@@ -9,7 +9,12 @@ import SmallForm from './forms/SmallForm';
 import { BIG } from '../../context/type';
 
 
-const ModalForm = ( { children, showModal, show, setData, dataForm } ) => {
+const ModalForm = ( { children, 
+                      showModal, 
+                      show, 
+                      setData, 
+                      dataForm, 
+                      titleForm } ) => {
 
   console.log('dataForms.Values', dataForm);
   const {numberDoc, dateDoc, employee, executionDate, title, text, typeDoc} = dataForm;
@@ -53,7 +58,7 @@ const ModalForm = ( { children, showModal, show, setData, dataForm } ) => {
               <Form onSubmit={handleSubmit}>
 
                 <Modal.Header className={'modal-header'} closeButton>
-                  <Modal.Title>Добавить элемент</Modal.Title>
+                  <Modal.Title>{titleForm}</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>                  
