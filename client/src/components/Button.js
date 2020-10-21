@@ -1,13 +1,14 @@
 import React from 'react';
 
-import add from '../../img/plus.svg';
-import edit from '../../img/edit.svg';
-import delite from '../../img/trash.svg';
-import print from '../../img/print.svg';
-import check from '../../img/mark.png';
+import add from '../img/plus.svg';
+import edit from '../img/edit.svg';
+import delite from '../img/trash.svg';
+import print from '../img/print.svg';
+import check from '../img/mark.png';
 
 
 const Button = ({src, name, handleClick}) => {
+    console.log('src', src)
     let ico;    
     switch (src) {
         case 'add':

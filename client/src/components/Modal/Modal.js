@@ -2,12 +2,6 @@ import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { Formik } from 'formik';
 
-import Input from './elements/Input'
-
-import BigForm from './forms/BigForm';
-import SmallForm from './forms/SmallForm';
-import { BIG } from '../../context/type';
-
 
 const ModalForm = ( { children, 
                       showModal, 

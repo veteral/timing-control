@@ -1,12 +1,12 @@
 import React from 'react';
-import Button from '../components/button/Button';
+import Button from './Button';
 
 
 const HeaderData = ({ headingPage, blockButton }) => {
-    let groupButtonsElements = blockButton.map((b, index) => <Button key={index} 
-                                                                     src={b.img} 
-                                                                     title={b.name} 
-                                                                     handleClick={b.handleClick} />);
+    let groupButtonsElements = blockButton.map((b) => <Button key={b.id} 
+                                                              src={b.img} 
+                                                              title={b.name} 
+                                                              handleClick={b.handleClick} />);
 
     console.log('HeaderData');
     return (

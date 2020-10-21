@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Col, Row } from 'react-bootstrap';
+import { Form, Col } from 'react-bootstrap';
 
 import Input from '../elements/Input';
 import DatePicker from '../elements/DatePicker';
@@ -7,14 +7,7 @@ import Select from '../elements/Select';
 
 
 const BigForm = (props) => {
-
-    const dropdownOptions = [
-        { id: 'Select an option', name: '' },
-        { id: 'Option 1', name: 'option1' },
-        { id: 'Option 2', name: 'option2' },
-        { id: 'Option 3', name: 'option3' }
-      ]; 
-      
+    
       console.log('Big Form - values', props.values);
     
     return (

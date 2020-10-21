@@ -8,7 +8,6 @@ import HeaderData from '../components/HeaderData';
 import TableData from '../components/TableData';
 import Modal from '../components/modal/Modal';
 import BigForm from '../components/modal/forms/BigForm';
-import AddButton from '../components/button/AddButton';
 
 
 const Control = () => {
@@ -27,11 +26,11 @@ const Control = () => {
     const [isModal, setModal] = useState(false);  
 
     const blockButton = [
-        { img: 'check', name: 'исполнено', handleClick: setModal },
-        { img: 'add', name: 'добавить', handleClick: setModal },
-        { img: 'edit', name: 'изменить', handleClick: setModal },
-        { img: 'delite', name: 'удалить', handleClick: setModal },
-        { img: 'print', name: 'печать', handleClick: setModal },
+        { id: 1, img: 'check', name: 'исполнено', handleClick: setModal },
+        { id: 2, img: 'add', name: 'добавить', handleClick: setModal },
+        { id: 3, img: 'edit', name: 'изменить', handleClick: setModal },
+        { id: 4, img: 'delite', name: 'удалить', handleClick: setModal },
+        { id: 5, img: 'print', name: 'печать', handleClick: setModal },
     ]
 
     const { data, 
@@ -88,8 +87,7 @@ const Control = () => {
                             employee={data.employee} 
                         />
                     </Modal>
-            }       
-            
+            }           
         </>
     );
 }
