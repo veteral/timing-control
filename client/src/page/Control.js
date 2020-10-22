@@ -5,9 +5,11 @@ import React,
     } from 'react';
 import { DBContext } from '../context/DBContext';
 import HeaderData from '../components/HeaderData';
-import TableData from '../components/TableData';
+import Table from '../components/table/Table';
 import Modal from '../components/modal/Modal';
 import BigForm from '../components/modal/forms/BigForm';
+import TableHeader from '../components/table/TableHeader';
+import TableBodyControl from '../components/table/TableBodyControl';
 
 
 const Control = () => {
@@ -24,7 +26,7 @@ const Control = () => {
     ];
 
     const [isModal, setModal] = useState(false);  
-
+   
     const blockButton = [
         { id: 1, img: 'check', name: 'исполнено', handleClick: setModal },
         { id: 2, img: 'add', name: 'добавить', handleClick: setModal },
@@ -57,7 +59,6 @@ const Control = () => {
             typeDoc: data.actionRow.typeDoc
         }
 
-        console.log('DataForm', dataForm)
     return (
         <>  
             <HeaderData 
@@ -66,12 +67,14 @@ const Control = () => {
             />                            
             { 
                 data.control && 
-                    <TableData
-                        title={tableTitle}
-                        data={data}
-                        actionRow={data.actionRow}
-                        setActionRow={setActionRow}
-                    />                 
+                    <Table>
+                        <TableHeader title={tableTitle} />
+                        <TableBodyControl 
+                            data={data}
+                            actionRow={data.actionRow}
+                            setActionRow={setActionRow} 
+                        />
+                    </Table>                 
             }
             { 
                 isModal &&

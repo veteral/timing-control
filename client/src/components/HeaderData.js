@@ -2,13 +2,7 @@ import React from 'react';
 import Button from './Button';
 
 
-const HeaderData = ({ headingPage, blockButton }) => {
-    let groupButtonsElements = blockButton.map((b) => <Button key={b.id} 
-                                                              src={b.img} 
-                                                              title={b.name} 
-                                                              handleClick={b.handleClick} />);
-
-    console.log('HeaderData');
+const HeaderData = ({ headingPage, blockButton }) => {    
     return (
         <div className={'data__header'}>
             <div className={'data__title'}>
@@ -16,7 +10,13 @@ const HeaderData = ({ headingPage, blockButton }) => {
             </div>
             <div className={'data__btn-group'}>
 
-                {groupButtonsElements}               
+                {
+                    blockButton &&
+                        blockButton.map((b) => <Button  key={b.id} 
+                                                        src={b.img} 
+                                                        title={b.name} 
+                                                        handleClick={b.handleClick} />)
+                }               
 
             </div>
         </div>
