@@ -7,8 +7,8 @@ import print from '../img/print.svg';
 import check from '../img/mark.png';
 
 
-const Button = ({src, name, handleClick}) => {
-    console.log('src', src)
+const Button = ({src, title, handleClick}) => {
+    //console.log('name', name)
     let ico;    
     switch (src) {
         case 'add':
@@ -38,7 +38,8 @@ const Button = ({src, name, handleClick}) => {
                         className={'button-img'} 
                         data-toggle="tooltip" 
                         data-placement="bottom"              
-                        title={name} alt={name}
+                        title={title} alt={title}
+                        //title={'title'}
                         onClick={handleClick}
                     />
                 

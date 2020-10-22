@@ -28,7 +28,7 @@ const Control = () => {
     const [isModal, setModal] = useState(false);  
    
     const blockButton = [
-        { id: 1, img: 'check', name: 'исполнено', handleClick: setModal },
+        { id: 1, img: 'check', name: 'исполнить', handleClick: setModal },
         { id: 2, img: 'add', name: 'добавить', handleClick: setModal },
         { id: 3, img: 'edit', name: 'изменить', handleClick: setModal },
         { id: 4, img: 'delite', name: 'удалить', handleClick: setModal },
