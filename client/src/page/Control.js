@@ -7,13 +7,13 @@ import { DBContext } from '../context/DBContext';
 import HeaderData from '../components/HeaderData';
 import Table from '../components/table/Table';
 import Modal from '../components/modal/Modal';
-import BigForm from '../components/modal/forms/BigForm';
+import ChangeDocumentForm from '../components/modal/forms/ChangeDocumentForm';
 import TableHeader from '../components/table/TableHeader';
 import TableBodyControl from '../components/table/TableBodyControl';
 
 
 const Control = () => {
-    const headingPage = 'Документы на контроле:';
+    const headingPage = 'Документы на контроле:';        
     const tableTitle = [
         ' ', 
         'Номер документа', 
@@ -25,15 +25,9 @@ const Control = () => {
         'Тип документа',
     ];
 
-    const [isModal, setModal] = useState(false);  
-   
-    const blockButton = [
-        { id: 1, img: 'check', name: 'исполнить', handleClick: setModal },
-        { id: 2, img: 'add', name: 'добавить', handleClick: setModal },
-        { id: 3, img: 'edit', name: 'изменить', handleClick: setModal },
-        { id: 4, img: 'delite', name: 'удалить', handleClick: setModal },
-        { id: 5, img: 'print', name: 'печать', handleClick: setModal },
-    ]
+    const [isModal, setModal] = useState(false);
+    const [values, setValues] = useState({});  
+    const [title, setTitle] = useState(); 
 
     const { data, 
             getData, 
@@ -42,23 +36,54 @@ const Control = () => {
 
     useEffect(() => {      
         getData();   
-        // eslint-disable-next-line               
+        // eslint-disable-next-line    
+        console.log('UseEffect')           
     }, []);
 
     const showModal = () => {
         setModal(isModal === false ? true : false);
     }
 
-    const dataForm = {
-            numberDoc: data.actionRow.numberDoc,
-            dateDoc: data.actionRow.dateDoc,
-            employee: data.actionRow.employee,
-            executionDate: data.actionRow.executionDate,
-            title: data.actionRow.title,
-            text: data.actionRow.text,
-            typeDoc: data.actionRow.typeDoc
-        }
+    const addDocument = () => {
+        setValues({
+                    numberDoc: '',
+                    dateDoc: new Date(),
+                    employee: '',
+                    executionDate: new Date(),
+                    title: '',
+                    text: '',
+                    typeDoc: ''
+                }
+        );
+        setTitle('Добавить документ');
+        showModal();
+    };
 
+    const editDocument = () => {
+        //debugger
+        setValues({
+                    numberDoc: data.actionRow.numberDoc,
+                    dateDoc: new Date(data.actionRow.dateDoc),
+                    employee: data.actionRow.employee,
+                    executionDate: new Date(data.actionRow.executionDate),
+                    title: data.actionRow.title,
+                    text: data.actionRow.text,
+                    typeDoc: data.actionRow.typeDoc
+                    }
+        );
+
+        setTitle('Изменить документ');
+        showModal();   
+    }    
+
+    const blockButton = [
+        { id: 1, img: 'check', name: 'исполнить', handleClick: showModal },
+        { id: 2, img: 'add', name: 'добавить', handleClick: addDocument },
+        { id: 3, img: 'edit', name: 'изменить', handleClick: editDocument },
+        { id: 4, img: 'delite', name: 'удалить', handleClick: showModal },
+        { id: 5, img: 'print', name: 'печать', handleClick: showModal },
+    ];
+//debugger
     return (
         <>  
             <HeaderData 
@@ -82,10 +107,10 @@ const Control = () => {
                         showModal={showModal}
                         show={isModal}  
                         setData={setData}                      
-                        dataForm={dataForm} 
-                        titleForm={'Добавить документ'}                   
+                        dataForm={values} 
+                        titleForm={title}                   
                     >
-                        <BigForm 
+                        <ChangeDocumentForm 
                             type={data.type} 
                             employee={data.employee} 
                         />

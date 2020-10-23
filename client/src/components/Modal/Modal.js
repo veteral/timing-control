@@ -8,7 +8,8 @@ const ModalForm = ( { children,
                       show, 
                       setData, 
                       dataForm, 
-                      titleForm } ) => {    
+                      titleForm } ) => {
+  console.log('Values', dataForm);                          
   return (
     <>
       <Formik        
