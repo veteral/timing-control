@@ -8,8 +8,9 @@ const ModalForm = ( { children,
                       show, 
                       setData, 
                       dataForm, 
-                      titleForm } ) => {
-  console.log('Values', dataForm);                          
+                      titleForm,
+                      data } ) => {
+  //console.log('Values', dataForm);                          
   return (
     <>
       <Formik        
@@ -18,7 +19,7 @@ const ModalForm = ( { children,
         onSubmit={(values) => {          
           console.log("SubmitValues", values);
           showModal();
-          //setData(values);
+          setData(data, values);
         }}        
       >
         {({

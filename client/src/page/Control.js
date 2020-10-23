@@ -83,7 +83,7 @@ const Control = () => {
         { id: 4, img: 'delite', name: 'удалить', handleClick: showModal },
         { id: 5, img: 'print', name: 'печать', handleClick: showModal },
     ];
-//debugger
+
     return (
         <>  
             <HeaderData 
@@ -108,7 +108,8 @@ const Control = () => {
                         show={isModal}  
                         setData={setData}                      
                         dataForm={values} 
-                        titleForm={title}                   
+                        titleForm={title} 
+                        data={data}                  
                     >
                         <ChangeDocumentForm 
                             type={data.type} 

@@ -5,7 +5,8 @@ import arrow from '../../img/next.png';
 const TableBodyControl = ({ data, 
                      actionRow, 
                      setActionRow,                    
-                    }) => {                            
+                    }) => {   
+    console.log('TableBodyControl', data)                                                 
     return (
         <>                   
             <tbody>
@@ -26,7 +27,8 @@ const TableBodyControl = ({ data,
                             <td>{new Date(el.dateDoc).toLocaleDateString('en-GB')}</td>
                             <td>
                                 {
-                                    data.employee.find(f => f.id === el.employee).name
+                                    el.employee &&
+                                        data.employee.find(f => f.id === el.employee).name
                                 }
                             </td>
                             <td>{new Date(el.executionDate).toLocaleDateString('en-GB')}</td>
@@ -34,7 +36,8 @@ const TableBodyControl = ({ data,
                             <td>{el.text}</td>
                             <td>
                                 {
-                                    data.type.find(f => f.id === el.typeDoc).name
+                                    el.typeDoc && 
+                                        data.type.find(f => f.id === el.typeDoc).name
                                 }
                             </td>            
                         </tr>

@@ -40,11 +40,17 @@ export const DBState = ({children}) => {
     * добавления, изменения или удаления    * 
     */  
   const setData = async (data, el) => {
+    const arrId = data.control.map(e => e.id);
+    let maxId = Math.max.apply(null, arrId);
+    const document = {
+      id: ++maxId, ...el
+    }
     const payload = {
       ...data,
-      control: [...data.control, el]
+      control: [...data.control, document]
     }
 
+    console.log('SetData', payload);
     const newData = await request('/api/data', 'POST', payload);     
 
     console.log('data post - NEW', payload);
