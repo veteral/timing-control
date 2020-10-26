@@ -1,9 +1,7 @@
 import React, {useReducer} from 'react';
 import {DBContext} from './DBContext';
 import {DBReducer} from './DBReducer';
-import {  DATA,
-          SET_ACTION_ROW
-        } from './type';
+import { DATA } from './type';
 // import {ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER} from '../types'
 
 
@@ -12,8 +10,8 @@ export const DBState = ({children}) => {
   //const URL = 'http://localhost:5000/';
 
   const initialState = {
-    data: {},
-    actionRow: {}
+    data: {}
+    //actionRow: {}
     //loading: false
   }
   const [state, dispatch] = useReducer(DBReducer, initialState);
@@ -26,13 +24,13 @@ export const DBState = ({children}) => {
     const data = await request('/api/data'); 
     
     data.control.sort((a, b) => new Date(a.dateDoc) - new Date(b.dateDoc));            
-    const actionRow = data.control[0];    
-    const payload = {
-       ...data,
-       actionRow
-    }
+    //const actionRow = data.control[0];    
+    //const payload = {
+      // ...data
+       //actionRow
+   // }
     
-    dispatch({type: DATA, payload});
+    dispatch({type: DATA, data});
   }
    /**************************************************
     * POST запрос
@@ -62,9 +60,9 @@ export const DBState = ({children}) => {
   /**************************************************
    * получаем активную строку по клику 
    */
-  const setActionRow = tr => {
-    dispatch({type: SET_ACTION_ROW, tr});
-  }
+  // const setActionRow = tr => {
+  //   dispatch({type: SET_ACTION_ROW, tr});
+  // }
 
   /**************************************************
   * функция запроса на сервер  
@@ -96,7 +94,7 @@ export const DBState = ({children}) => {
   return (
     <DBContext.Provider value={{
       data: state,
-      getData, setActionRow, setData
+      getData, setData
     }}>
       { children }
     </DBContext.Provider>

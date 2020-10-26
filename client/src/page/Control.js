@@ -28,16 +28,19 @@ const Control = () => {
     const [isModal, setModal] = useState(false);
     const [values, setValues] = useState({});  
     const [title, setTitle] = useState(); 
+    const [actionRow, setActonRow] = useState();
 
     const { data, 
             getData, 
-            setActionRow, 
+            //setActionRow, 
             setData } = useContext(DBContext); 
 
     useEffect(() => {      
-        getData();   
+        getData();  
+        console.log('useEffect',data);
+        //data && setActonRow(data.control[0]);       //при загрузке компонентам помечаем активным первую строку 
         // eslint-disable-next-line    
-        console.log('UseEffect')           
+        //console.log('UseEffect')           
     }, []);
 
     const showModal = () => {
@@ -74,7 +77,11 @@ const Control = () => {
 
         setTitle('Изменить документ');
         showModal();   
-    }    
+    };   
+    
+    const changeActionRow = (tr) => {
+        setActonRow(tr);
+    };
 
     const blockButton = [
         { id: 1, img: 'check', name: 'исполнить', handleClick: showModal },
@@ -96,8 +103,8 @@ const Control = () => {
                         <TableHeader title={tableTitle} />
                         <TableBodyControl 
                             data={data}
-                            actionRow={data.actionRow}
-                            setActionRow={setActionRow} 
+                            actionRow={actionRow}
+                            setActionRow={changeActionRow} 
                         />
                     </Table>                 
             }
