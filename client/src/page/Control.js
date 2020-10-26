@@ -27,8 +27,8 @@ const Control = () => {
 
     const [isModal, setModal] = useState(false);
     const [values, setValues] = useState({});  
-    const [title, setTitle] = useState(); 
-    const [actionRow, setActonRow] = useState();
+    const [title, setTitle] = useState(''); 
+    const [actionRow, setActionRow] = useState();
 
     const { data, 
             getData, 
@@ -37,10 +37,7 @@ const Control = () => {
 
     useEffect(() => {      
         getData();  
-        console.log('useEffect',data);
-        //data && setActonRow(data.control[0]);       //при загрузке компонентам помечаем активным первую строку 
-        // eslint-disable-next-line    
-        //console.log('UseEffect')           
+        console.log('useEffect',data);                   
     }, []);
 
     const showModal = () => {
@@ -64,14 +61,24 @@ const Control = () => {
 
     const editDocument = () => {
         //debugger
+        let row;
+        const newRow = {
+            ...data.control[0]
+        }
+        if(!actionRow) row = {...newRow};
+            else row = {...actionRow};               
+        
+        // setActionRow(row => ({...row}))
+        // console.log(row)
+        // console.log(actionRow)
         setValues({
-                    numberDoc: data.actionRow.numberDoc,
-                    dateDoc: new Date(data.actionRow.dateDoc),
-                    employee: data.actionRow.employee,
-                    executionDate: new Date(data.actionRow.executionDate),
-                    title: data.actionRow.title,
-                    text: data.actionRow.text,
-                    typeDoc: data.actionRow.typeDoc
+                    numberDoc: row.numberDoc,
+                    dateDoc: new Date(row.dateDoc),
+                    employee: row.employee,
+                    executionDate: new Date(row.executionDate),
+                    title: row.title,
+                    text: row.text,
+                    typeDoc: row.typeDoc
                     }
         );
 
@@ -80,7 +87,7 @@ const Control = () => {
     };   
     
     const changeActionRow = (tr) => {
-        setActonRow(tr);
+        setActionRow(tr);
     };
 
     const blockButton = [
@@ -91,6 +98,8 @@ const Control = () => {
         { id: 5, img: 'print', name: 'печать', handleClick: showModal },
     ];
 
+
+    //console.log('end Control - data', data);
     return (
         <>  
             <HeaderData 

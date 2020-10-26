@@ -9,19 +9,15 @@ const TableBodyControl = ({ data,
     console.log('TableBodyControl', data);
     console.log('ActionRow', actionRow);
     
+    //при первой загрузке ставим первой активную строку
     !actionRow && (actionRow = {id: data.control[0].id});
 
-    //if(actionRow === {}) {
-    //     actionRow = {id: data.control[0].id}
-    //     console.log('ActionRow', actionRow);
-    // }
-    
     return (
         <>                   
             <tbody>
                 {   
                                         
-                    data.control.map((el,index) => {
+                    data.control.map(el => {
                             // className={'table-danger'}                        
                         return (  
                             <tr key={el.id} onClick={ ()=>setActionRow(el) }> 
