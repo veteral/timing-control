@@ -10,9 +10,7 @@ export const DBState = ({children}) => {
   //const URL = 'http://localhost:5000/';
 
   const initialState = {
-    data: {}
-    //actionRow: {}
-    //loading: false
+    data: {}    
   }
   const [state, dispatch] = useReducer(DBReducer, initialState);
  
@@ -89,7 +87,7 @@ export const DBState = ({children}) => {
   
       if (data) {
         headers['Content-Type'] = 'application/json';
-        body = JSON.stringify(data, null, 2);
+        body = JSON.stringify(data);
       }
 
       //console.log('BODY', body);
