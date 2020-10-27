@@ -46,6 +46,7 @@ const Control = () => {
 
     const addDocument = () => {
         setValues({
+                    id: 0,
                     numberDoc: '',
                     dateDoc: new Date(),
                     employee: '',
@@ -72,6 +73,7 @@ const Control = () => {
         // console.log(row)
         // console.log(actionRow)
         setValues({
+                    id: row.id,
                     numberDoc: row.numberDoc,
                     dateDoc: new Date(row.dateDoc),
                     employee: row.employee,
