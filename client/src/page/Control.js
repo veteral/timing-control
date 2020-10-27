@@ -37,7 +37,7 @@ const Control = () => {
 
     useEffect(() => {      
         getData();  
-        console.log('useEffect',data);                   
+        //console.log('useEffect',data);                   
     }, []);
 
     const showModal = () => {

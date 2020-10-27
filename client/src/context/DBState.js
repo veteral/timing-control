@@ -23,7 +23,7 @@ export const DBState = ({children}) => {
       
     const data = await request('/api/data'); 
     
-    data.control.sort((a, b) => new Date(a.dateDoc) - new Date(b.dateDoc));            
+    //data.control.sort((a, b) => new Date(a.dateDoc) - new Date(b.dateDoc));            
     //const actionRow = data.control[0];    
     //const payload = {
       // ...data
@@ -37,12 +37,12 @@ export const DBState = ({children}) => {
     * записываем данные в файл после изменений данных -
     * добавления, изменения или удаления    * 
     */  
-  const setData = async (data, el) => {
-    //debugger
+  const setData = async (data, el) => {    
     console.log('SetData-ELEMENT', el);
     
     let document;
-
+    // если id = 0, значит это новый объект,
+    // находим максимальное значение  id
     if(el.id === 0) {
       const arrId = data.control.map(e => e.id);
       let maxId = Math.max.apply(null, arrId);
@@ -50,6 +50,7 @@ export const DBState = ({children}) => {
         ...data.control,
         {...el, id: ++maxId }
       ];
+    // иначе - это редактирование существующего элемента 
     } else {
       const idx = data.control.findIndex(c => c.id === el.id)
       data.control[idx] = el;
@@ -63,12 +64,12 @@ export const DBState = ({children}) => {
     // }
 
     console.log('SetData', data);
-    //const newData = await request('/api/data', 'POST', payload);     
+    const newData = await request('/api/data', 'POST', data);     
 
    // console.log('data post - NEW', payload);
     
 
-    dispatch({type: DATA, data});
+    dispatch({type: DATA, data: newData});
   }
 
   /**************************************************
