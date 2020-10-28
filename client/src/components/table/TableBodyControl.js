@@ -34,8 +34,9 @@ const TableBodyControl = ({ data,
                             <td>{new Date(el.dateDoc).toLocaleDateString('en-GB')}</td>
                             <td>
                                 {
-                                    el.employee &&
-                                        data.employee.find(f => f.id === el.employee).name
+                                    el.employee !== 0 
+                                        ? data.employee.find(f => f.id === el.employee).name
+                                        : ""
                                 }
                             </td>
                             <td>{new Date(el.executionDate).toLocaleDateString('en-GB')}</td>
@@ -43,8 +44,9 @@ const TableBodyControl = ({ data,
                             <td>{el.text}</td>
                             <td>
                                 {
-                                    el.typeDoc && 
-                                        data.type.find(f => f.id === el.typeDoc).name
+                                    el.typeDoc !== 0 
+                                        ? data.type.find(f => f.id === el.typeDoc).name
+                                        : ""
                                 }
                             </td>            
                         </tr>

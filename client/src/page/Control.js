@@ -37,8 +37,10 @@ const Control = () => {
 
     useEffect(() => {      
         getData();  
-        //console.log('useEffect',data);                   
+        console.log('useEffect',data);                   
     }, []);
+
+   // useEffect(getData, []);
 
     const showModal = () => {
         setModal(isModal === false ? true : false);

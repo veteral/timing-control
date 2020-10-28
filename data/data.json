@@ -1,47 +1,31 @@
 {
   "control": [
     {
-      "id": 10,
+      "id": 1,
       "numberDoc": "1-test",
       "dateDoc": "2020-10-27T14:15:21.430Z",
-      "employee": "",
+      "employee": 1,
       "executionDate": "2020-10-01T13:15:21.000Z",
       "title": "sdsds",
       "text": "sdss",
-      "typeDoc": ""
-    },
-    {
-      "id": 4,
-      "numberDoc": "01/11/22",
-      "dateDoc": "2020-10-15T09:53:20.014Z",
-      "employee": 1,
-      "executionDate": "2020-10-15T09:53:20.014Z",
-      "title": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
-      "text": "ввававав аыыаыаыаыа",
       "typeDoc": 1
     },
     {
-      "id": 5,
-      "numberDoc": "01/11/23/24",
-      "dateDoc": "2020-10-16T09:53:20.014Z",
-      "employee": 2,
-      "executionDate": "2020-10-16T09:53:20.014Z",
-      "title": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
-      "text": "ввававав аыыаыаыаыа",
+      "id": 2,
+      "numberDoc": "rrrrr",
+      "dateDoc": "2020-10-28T08:14:11.146Z",
+      "employee": 1,
+      "executionDate": "2020-10-31T08:14:11.000Z",
+      "title": "ereere",
+      "text": "",
       "typeDoc": 2
-    },
-    {
-      "id": 9,
-      "numberDoc": "01/11/22",
-      "dateDoc": "2020-10-15T09:53:20.014Z",
-      "employee": 1,
-      "executionDate": "2020-10-23T09:53:20.000Z",
-      "title": "ывывывыывывывы фвыфвыфвывывыв ывывывывыввывы",
-      "text": "ввававав аыыаыаыаыа111111",
-      "typeDoc": 1
     }
   ],
   "type": [
+    {
+      "id": 0,
+      "name": "<>"
+    },
     {
       "id": 1,
       "name": "Заявка"
@@ -52,6 +36,10 @@
     }
   ],
   "employee": [
+    {
+      "id": 0,
+      "name": "<>"
+    },
     {
       "id": 1,
       "name": "Иванов И.И."

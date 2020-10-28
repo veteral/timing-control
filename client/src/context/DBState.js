@@ -37,8 +37,14 @@ export const DBState = ({children}) => {
     */  
   const setData = async (data, el) => {    
     console.log('SetData-ELEMENT', el);
-    
+    //debugger
     let document;
+
+    // преобразовали из строки в число selects
+    const element = {
+      ...el, employee: Number(el.employee), typeDoc: Number(el.typeDoc)
+    }
+
     // если id = 0, значит это новый объект,
     // находим максимальное значение  id
     if(el.id === 0) {
@@ -46,12 +52,12 @@ export const DBState = ({children}) => {
       let maxId = Math.max.apply(null, arrId);
       data.control = [
         ...data.control,
-        {...el, id: ++maxId }
+        {...element, id: ++maxId }
       ];
     // иначе - это редактирование существующего элемента 
     } else {
-      const idx = data.control.findIndex(c => c.id === el.id)
-      data.control[idx] = el;
+      const idx = data.control.findIndex(c => c.id === element.id)
+      data.control[idx] = element;
       }
     
     
@@ -62,7 +68,8 @@ export const DBState = ({children}) => {
     // }
 
     console.log('SetData', data);
-    const newData = await request('/api/data', 'POST', data);     
+    const newData = await request('/api/data', 'POST', data);    
+     
 
    // console.log('data post - NEW', payload);
     
