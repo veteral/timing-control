@@ -6,7 +6,7 @@ import DatePicker from '../elements/DatePicker';
 import Select from '../elements/Select';
 
 
-const BigForm = (props) => {
+const ChangeDocumentForm = (props) => {
     
       console.log('Big Form - values', props.values);
     
@@ -72,4 +72,4 @@ const BigForm = (props) => {
     );
 }
 
-export default BigForm;
+export default ChangeDocumentForm;

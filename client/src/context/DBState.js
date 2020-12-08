@@ -20,6 +20,8 @@ export const DBState = ({children}) => {
   const getData = async () => {
       
     const data = await request('/api/data'); 
+
+    console.log('point - getData');
     
     //data.control.sort((a, b) => new Date(a.dateDoc) - new Date(b.dateDoc));            
     //const actionRow = data.control[0];    
@@ -35,9 +37,8 @@ export const DBState = ({children}) => {
     * записываем данные в файл после изменений данных -
     * добавления, изменения или удаления    * 
     */  
-  const setData = async (data, el) => {    
-    console.log('SetData-ELEMENT', el);
-    //debugger
+  const setData = async (data, el) => {       
+    
     let document;
 
     // преобразовали из строки в число selects
@@ -58,31 +59,57 @@ export const DBState = ({children}) => {
     } else {
       const idx = data.control.findIndex(c => c.id === element.id)
       data.control[idx] = element;
-      }
+      }    
     
-    
-    console.log('SetData-Document', document);
-    // const payload = {
-    //   ...data,
-    //   control: [...data.control, document]
-    // }
-
-    console.log('SetData', data);
     const newData = await request('/api/data', 'POST', data);    
      
-
-   // console.log('data post - NEW', payload);
-    
-
     dispatch({type: DATA, data: newData});
   }
 
   /**************************************************
-   * получаем активную строку по клику 
+   * удаляем активную строку по клику кнопки delete 
    */
-  // const setActionRow = tr => {
-  //   dispatch({type: SET_ACTION_ROW, tr});
-  // }
+  const deleteDocument = async (data, id) => {
+
+    //console.log('deleteDocument');
+    const filteredData = data.control.filter(el => el.id !== id);
+    //console.log('filteredData', filteredData);
+
+    const newData = {
+      ...data,
+      control: [...filteredData]
+    }
+
+    //console.log('newData', newData); 
+    const postData = await request('/api/data', 'POST', newData);
+
+    //console.log('postData', postData);
+    dispatch({type: DATA, data: postData});
+  }
+
+  /**
+   * Удаляем документ из 'контроля' и добавляем в 'инсполненые'
+   * по клику по кнопке 'исполнить'   
+   */
+  const toExecuteDocument = async (data, row) => {
+    //console.log('deleteDocument');
+    const filteredData = data.control.filter(el => el.id !== row.id);
+    //console.log('filteredData', filteredData);
+
+    const controlData = {
+      ...data,
+      control: [...filteredData]
+    }
+
+    const newData = {data: [...controlData], execRow: {...row}};
+
+    //console.log('newData', newData); 
+    const postData = await request('/api/exec', 'POST', newData);
+
+    //console.log('postData', postData);
+    dispatch({type: DATA, data: postData});
+  }
+
 
   /**************************************************
   * функция запроса на сервер  
@@ -110,11 +137,11 @@ export const DBState = ({children}) => {
     }
   }
 
-
   return (
     <DBContext.Provider value={{
       data: state,
-      getData, setData
+      deleteDocument,
+      getData, setData, 
     }}>
       { children }
     </DBContext.Provider>

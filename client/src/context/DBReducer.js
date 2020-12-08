@@ -4,7 +4,7 @@ import {
 
 export const DBReducer = (state, action) => {
 
-console.log('reducer - action type', action.type)
+    console.log('point - reduser');
     switch (action.type) {
         case DATA:
             console.log('DATA', action.data);

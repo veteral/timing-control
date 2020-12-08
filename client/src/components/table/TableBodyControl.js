@@ -6,8 +6,8 @@ const TableBodyControl = ({ data,
                      actionRow, 
                      setActionRow,                    
                     }) => {   
-    console.log('TableBodyControl', data);
-    console.log('ActionRow', actionRow);
+    console.log('point - TableBodyControl', data);
+    //console.log('ActionRow', actionRow);
     
     //при первой загрузке ставим первой активную строку
     !actionRow && (actionRow = {id: data.control[0].id});

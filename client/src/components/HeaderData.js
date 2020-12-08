@@ -3,6 +3,7 @@ import Button from './Button';
 
 
 const HeaderData = ({ headingPage, blockButton }) => {    
+    console.log('point - Header');
     return (
         <div className={'data__header'}>
             <div className={'data__title'}>

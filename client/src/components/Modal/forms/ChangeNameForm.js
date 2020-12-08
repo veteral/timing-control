@@ -4,7 +4,7 @@ import { Form, Col, Row } from 'react-bootstrap';
 import Input from '../elements/Input';
 
 
-const SmallForm = (props) => {
+const ChangeNameForm = (props) => {
     
     return (
         <>
@@ -18,4 +18,4 @@ const SmallForm = (props) => {
     );
 }
 
-export default SmallForm;
+export default ChangeNameForm;
