@@ -8,6 +8,7 @@ export const DBReducer = (state, action) => {
     switch (action.type) {
         case DATA:
             console.log('DATA', action.data);
+            console.log('DATA', action.data.type);
             return ({
             ...action.data          
             });

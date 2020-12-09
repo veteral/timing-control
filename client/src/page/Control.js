@@ -36,12 +36,14 @@ const Control = () => {
     const [dialog, setDialog] = useState({
                                         show: false,
                                         title: '',
-                                        text: ''
+                                        text: '',
+                                        row: ''
                                     });
 
     const { data, 
             getData, 
             deleteDocument, 
+            toExecuteDocument,
             setData } = useContext(DBContext); 
 
     console.log('point 1 - start (context)', data);
@@ -49,17 +51,7 @@ const Control = () => {
     useEffect(() => {      
         getData();          
         console.log('point - useEffect');                
-    }, []);
-
-    // useEffect(() => {
-    // //    console.log('UseEffect - Data', data)
-        
-    //     //setActionRow('data');
-
-    //     console.log('point - UseEffect - ActionRow');
-    // }, [getData]);
-
-   // useEffect(getData, []);
+    }, []);    
 
    /*************************************
     * открываем/закрываем модальное окно
@@ -131,22 +123,42 @@ const Control = () => {
                     show: false});
     }
 
+    /**************************************************
+     * помещаем выделенный документ в исполненые
+     */
+     const modalCheckDocument = () => {
+        const word = 'Исполнить';
+        const title = 'Исполнить документ';
+        
+        openDialog(word, title, true);
+     }
+
+     /**************************************************
+      * удаляем выделеный документ
+      */
+    const modalDeliteDocument = () => {
+        const word = 'Удалить';
+        const title = 'Удалить документ';
+
+        openDialog(word, title, false);
+    }
+
     /***************************************
      * открываем диалоговое окно для удаления активного документа
-     */
-    
-    const showDialog = () => {
+     */    
+    function openDialog(word, title, check) {
         let row;
         if(!actionRow) row = {...data.control[0]};
             else row = {...actionRow};    
 
-        const body = `удалить документ: № ${row.numberDoc}, заголовк - "${row.title}"`;   
+        const text = `${word} документ: № ${row.numberDoc}, заголовок - "${row.title}"`;   
         setDialog({
             ...dialog,            
             show: true,
-            title: 'Удаление документа',
-            text: body,
-            id: row.id
+            title,
+            text,
+            row,
+            check
         });
     }
 
@@ -157,14 +169,15 @@ const Control = () => {
 
     //блок кнопок 
     const blockButton = [
-        { id: 1, img: 'check', name: 'исполнить', handleClick: showModal },
+        { id: 1, img: 'check', name: 'исполнить', handleClick: modalCheckDocument },
         { id: 2, img: 'add', name: 'добавить', handleClick: addDocument },
         { id: 3, img: 'edit', name: 'изменить', handleClick: editDocument },
-        { id: 4, img: 'delite', name: 'удалить', handleClick: showDialog },
+        { id: 4, img: 'delite', name: 'удалить', handleClick: modalDeliteDocument },
         { id: 5, img: 'print', name: 'печать', handleClick: showModal },
     ];
 
-    console.log('point - return');
+    console.log('point - return(data.control)', data);
+    console.log('point - return(data.control)', data.control);
 
     return (
         <>  
@@ -206,6 +219,7 @@ const Control = () => {
                         data={data}
                         hideDialog={hideDialog}                        
                         deleteDocument={deleteDocument}
+                        toExecuteDocument={toExecuteDocument}
                     />
             }           
         </>

@@ -1,44 +1,14 @@
 {
   "control": [
     {
-      "id": 5,
-      "numberDoc": "333",
-      "dateDoc": "2020-10-29T11:38:52.986Z",
-      "employee": 0,
-      "executionDate": "2020-11-01T11:38:52.000Z",
-      "title": "",
-      "text": "",
-      "typeDoc": 0
-    },
-    {
-      "id": 6,
-      "numberDoc": "5",
-      "dateDoc": "2020-12-08T14:17:09.831Z",
-      "employee": 2,
-      "executionDate": "2020-12-08T14:17:09.831Z",
-      "title": "заголовок",
-      "text": "Текст ",
+      "id": 4,
+      "numberDoc": "222",
+      "dateDoc": "2020-10-29T11:38:40.474Z",
+      "employee": 1,
+      "executionDate": "2020-11-14T11:38:40.000Z",
+      "title": "xfrddgd",
+      "text": "gdgdgdg",
       "typeDoc": 1
-    },
-    {
-      "id": 3,
-      "numberDoc": "777",
-      "dateDoc": "2020-10-29T11:25:49.499Z",
-      "employee": 2,
-      "executionDate": "2021-01-03T11:25:49.000Z",
-      "title": "",
-      "text": "",
-      "typeDoc": 1
-    },
-    {
-      "id": 7,
-      "numberDoc": "6",
-      "dateDoc": "2020-12-08T14:18:25.279Z",
-      "employee": 2,
-      "executionDate": "2020-12-31T14:18:25.000Z",
-      "title": "заголовок",
-      "text": "Текст",
-      "typeDoc": 2
     }
   ],
   "type": [

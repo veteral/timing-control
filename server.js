@@ -40,10 +40,11 @@ app.post('/api/exec', (req, res) => {
   console.log(req.body);
   setData(pathToData + 'data.json', req.body.data);
 
-  //const data = getData(pathToData + 'data.json');
-  setData(pathToData + 'exec.json', req.body.row);
+  let data = getData(pathToData + 'exec.json');
+  data.push(req.body.execRow);
+  setData(pathToData + 'exec.json', data);
 
-  res.json(req.body);
+  res.json(req.body.data);
 });
 
 

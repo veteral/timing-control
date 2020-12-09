@@ -87,12 +87,13 @@ export const DBState = ({children}) => {
     dispatch({type: DATA, data: postData});
   }
 
-  /**
+  /************************************************************
    * Удаляем документ из 'контроля' и добавляем в 'инсполненые'
    * по клику по кнопке 'исполнить'   
    */
   const toExecuteDocument = async (data, row) => {
-    //console.log('deleteDocument');
+    console.log('toExecuteDocument-data', data);
+    console.log('toExecuteDocument-row', row);
     const filteredData = data.control.filter(el => el.id !== row.id);
     //console.log('filteredData', filteredData);
 
@@ -101,12 +102,17 @@ export const DBState = ({children}) => {
       control: [...filteredData]
     }
 
-    const newData = {data: [...controlData], execRow: {...row}};
+    console.log('controlData', controlData); 
+    const newData = { data: {...controlData}, execRow: {...row} };
 
-    //console.log('newData', newData); 
+    console.log('newData', newData); 
     const postData = await request('/api/exec', 'POST', newData);
 
-    //console.log('postData', postData);
+    //const postData = newData;
+
+    console.log('postData', postData);
+    //console.log('postData', postData.data.type);
+    
     dispatch({type: DATA, data: postData});
   }
 
@@ -141,6 +147,7 @@ export const DBState = ({children}) => {
     <DBContext.Provider value={{
       data: state,
       deleteDocument,
+      toExecuteDocument,
       getData, setData, 
     }}>
       { children }

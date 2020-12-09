@@ -10,7 +10,13 @@ const TableBodyControl = ({ data,
     //console.log('ActionRow', actionRow);
     
     //при первой загрузке ставим первой активную строку
-    !actionRow && (actionRow = {id: data.control[0].id});
+    if(!actionRow){
+        if(data.control.length > 0) 
+            actionRow = { id: data.control[0].id }; 
+        else actionRow = null;
+    }
+
+    //!actionRow && (actionRow = {id: data.control[0].id});
 
     data.control.sort((a, b) => new Date(a.executionDate) - new Date(b.executionDate));            
 
