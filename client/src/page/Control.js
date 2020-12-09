@@ -3,6 +3,7 @@ import React,
       useEffect, 
       useState
     } from 'react';
+import { useHistory } from 'react-router-dom';
 import { DBContext } from '../context/DBContext';
 import HeaderData from '../components/HeaderData';
 import Table from '../components/table/Table';
@@ -11,6 +12,7 @@ import ChangeDocumentForm from '../components/modal/forms/ChangeDocumentForm';
 import TableHeader from '../components/table/TableHeader';
 import TableBodyControl from '../components/table/TableBodyControl';
 import ModalMessage from '../components/modal/ModalMessage';
+import Print from './Print';
 
 //const MESSAGE = 'MESSAGE';
 //const DOCUMENT = 'DOCUMENT';
@@ -29,6 +31,7 @@ const Control = () => {
         'Тип документа',
     ];
 
+    const history = useHistory();
     const [isModal, setModal] = useState(false);
     const [values, setValues] = useState({});  
     const [title, setTitle] = useState(''); 
@@ -165,6 +168,19 @@ const Control = () => {
     /******************************************************************
      *  
      */
+    function printDocument() {
+        let row;
+        if(!actionRow) row = {...data.control[0]};
+            else row = {...actionRow};  
+
+        const location = {
+                pathname: '/print',
+                search: '?query=abc',
+                state: { row }
+            };
+        
+        history.push(location);
+    }
 
 
     //блок кнопок 
@@ -173,7 +189,7 @@ const Control = () => {
         { id: 2, img: 'add', name: 'добавить', handleClick: addDocument },
         { id: 3, img: 'edit', name: 'изменить', handleClick: editDocument },
         { id: 4, img: 'delite', name: 'удалить', handleClick: modalDeliteDocument },
-        { id: 5, img: 'print', name: 'печать', handleClick: showModal },
+        { id: 5, img: 'print', name: 'печать', handleClick: printDocument },
     ];
 
     console.log('point - return(data.control)', data);
