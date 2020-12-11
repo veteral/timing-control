@@ -174,9 +174,8 @@ const Control = () => {
             else row = {...actionRow};  
 
         const location = {
-                pathname: '/print',
-                search: '?query=abc',
-                state: { row }
+                pathname: '/print',                
+                state: { row, data }
             };
         
         history.push(location);

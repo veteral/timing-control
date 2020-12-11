@@ -106,7 +106,7 @@ tr {
 .page {
   width: 210mm;
   min-height: 297mm;
-  padding: 20mm 10mm 20mm 30mm;
+  padding: 20mm 20mm 20mm 20mm;
   /* padding: 20mm;  */
   margin: 10mm auto;
   border: 1px #D3D3D3 solid;       
@@ -117,9 +117,9 @@ tr {
 
 .subpage {
   padding: 1cm;
-  border: 5px red solid;
+  /* border: 5px red solid; */
   height: 256mm;                          /* 256mm */
-  /* outline: 2cm #FFEAEA solid;              */
+  outline: 2cm #FFEAEA solid;             
   position: relative;
 }
 
@@ -142,6 +142,58 @@ tr {
     background: initial;
     page-break-after: always;
   }
+}
+
+/** Print */
+
+.print {
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  padding-top: 30px;
+  font-size: 22px;
+}
+
+.heading-doc {  
+  font-style: italic;
+  padding-right: 20px;
+}
+
+.data-doc {
+  font-weight: bold;
+  padding-right: 20px;  
+}
+
+
+.print__department {
+  font-size: 26px;  
+  font-weight: bold;
+  margin-top: 40px;
+}
+
+.print__numberDoc {
+  margin-top: 20px;
+}
+
+.print__title {
+  margin-top: 20px;
+}
+
+.print__employee {
+  margin-top: 20px;
+}
+
+.print__executionDate {
+  
+
+}
+
+.print__text {
+  margin-top: 20px;
+}
+
+.text-decoration {
+  text-decoration: underline;
 }
 
 

@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import ReactToPrint from "react-to-print";
-import PropTypes from "prop-types";
 
-class ComponentToPrint extends React.Component {
-  render() {
+const ComponentToPrint = () => {
+  
     return (
       <table>
         <thead>
@@ -30,21 +29,21 @@ class ComponentToPrint extends React.Component {
         </tbody>
       </table>
     );
-  }
+  
 }
 
-class Example extends React.Component {
-  render() {
-    return (
-      <div>
-        <ReactToPrint
-          trigger={() => <a href="#">Print this out!</a>}
-          content={() => this.componentRef}
-        />
-        <ComponentToPrint ref={el => (this.componentRef = el)} />
-      </div>
-    );
-  }
-}
+const Example = () => {
+  const componentRef = useRef();
+ 
+  return (
+    <div>
+      <ReactToPrint
+        trigger={() => <button>Print this out!</button>}
+        content={() => componentRef.current}
+      />
+      <ComponentToPrint ref={componentRef} />
+    </div>
+  );
+};
 
 export default Example;
