@@ -56,6 +56,10 @@ const Control = () => {
         console.log('point - useEffect');                
     }, []);    
 
+    // useEffect(() => {
+    //     console.log('data useEffect');
+    // }, [data]);
+
    /*************************************
     * открываем/закрываем модальное окно
     */
