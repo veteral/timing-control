@@ -26,9 +26,43 @@ const TableBodyControl = ({ data,
                 {   
                                         
                     data.control.map(el => {
+                        const currentDate = new Date().getTime();
+                        
+                        /**
+                         * 86 400 000 мс в сутках.
+                         * Определяем количество мс в 2х и 5-ти сутках 
+                         */
+                        const redDate = currentDate + 172800000;                     
+                        const yellowDate = currentDate + 432000000;
+
+                        const execDate = new Date(el.executionDate).getTime();
+                      
+                        // console.log('redDate', new Date(redDate).toLocaleDateString('en-Gb'));
+                        // console.log('yellowDate', new Date(yellowDate).toLocaleDateString('en-GB'));
+                        // console.log('execDate', new Date(execDate).toLocaleDateString('en-GB'));
+
+                        // console.log('redDate', redDate);
+                        // console.log('yellowDate', yellowDate);
+                        // console.log('execDate', execDate);                       
+
+                        let warning = '';
+                       
+                        if(execDate > redDate) {
+                            console.log('execDate < redDate')
+                            if(execDate < yellowDate) {
+                                console.log('execDate > yellowDate')
+                                warning = 'table-warning';
+                            } else {
+                                console.log('execDate < yellowDate')
+                                warning = '';
+                            }                                
+                        } else {
+                            console.log('execDate > redDate')
+                            warning = 'table-danger';
+                        }
                             // className={'table-danger'}                        
                         return (  
-                            <tr key={el.id} onClick={ ()=>setActionRow(el) }> 
+                            <tr key={el.id} onClick={ ()=>setActionRow(el) } className={warning}> 
                             {                                                 
                                 el.id === actionRow.id 
                                     ?   <td>
