@@ -36,14 +36,6 @@ const TableBodyControl = ({ data,
                         const yellowDate = currentDate + 432000000;
 
                         const execDate = new Date(el.executionDate).getTime();
-                      
-                        // console.log('redDate', new Date(redDate).toLocaleDateString('en-Gb'));
-                        // console.log('yellowDate', new Date(yellowDate).toLocaleDateString('en-GB'));
-                        // console.log('execDate', new Date(execDate).toLocaleDateString('en-GB'));
-
-                        // console.log('redDate', redDate);
-                        // console.log('yellowDate', yellowDate);
-                        // console.log('execDate', execDate);                       
 
                         let warning = '';
                        

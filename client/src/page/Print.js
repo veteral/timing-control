@@ -14,7 +14,7 @@ export const Print = (props) => {
     //console.log(location.pathname); // result: '/secondpage'
     //console.log(location.search); // result: '?query=abc'
     const actionRow = location.state.row; // result: 'some_value'
-    const employee = location.state.data;
+    const employee = location.state.data.employee;
 
 
 
@@ -35,7 +35,13 @@ export const Print = (props) => {
         <div className={'print__title data-doc'}>{actionRow.title}</div>
         <div className={'print__employee'}>
           <span className={'heading-doc'}>Ответственный исполнитель:</span>
-          <span className={'data-doc text-decoration'}>{actionRow.employee}</span>
+          <span className={'data-doc text-decoration'}>
+            {
+              actionRow.employee !== 0 
+                ? employee.find(f => f.id === actionRow.employee).name
+                : ""
+            }
+          </span>
         </div>
         <div className={'print__executionDate'}>
           <span className={'heading-doc'}>Контрольный срок:</span>
