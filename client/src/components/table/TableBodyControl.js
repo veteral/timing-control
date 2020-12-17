@@ -1,6 +1,10 @@
 import React from 'react';
 import arrow from '../../img/next.png';
 
+function dateConversion(date) {
+    //const newDate = new Date(date)
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate(), 0, 0, 0, 0).getTime();     
+}
 
 const TableBodyControl = ({ data, 
                      actionRow, 
@@ -26,30 +30,50 @@ const TableBodyControl = ({ data,
                 {   
                                         
                     data.control.map(el => {
-                        const currentDate = new Date().getTime();
+                        const currentDate = dateConversion(new Date());
+
+                                                
+                        //let exDate = dateConversion(currentDate);
+                        //let curDate = new Date(exDate.getFullYear(), exDate.getMonth(), exDate.getDate(), 0, 0, 0, 0); // // 1 Jan 2011, 00:00:00; // создаем экземпляр объекта для определенной календарной даты;
+                        console.log('currentDate',currentDate);    
+                        //console.log('curDate', curDate);
+
+                        //const dt = new Date(year, month, date).getTime();
+                        //console.log('dt', dt);
                         
                         /**
                          * 86 400 000 мс в сутках.
-                         * Определяем количество мс в 2х и 5-ти сутках 
+                         * Определяем количество дней из мс в 2х и 5-ти сутках, а также в из элемента массива 
                          */
-                        const redDate = currentDate + 172800000;                     
-                        const yellowDate = currentDate + 432000000;
+                        const redDay = (currentDate + 172800000)/86400000;                      //259 200 000 - 3-е суток
+                        const yellowDay = (currentDate + 432000000)/86400000;                   //518 400 000 - 6-ть суток   
+                        const execDay = dateConversion(new Date(el.executionDate))/86400000;
 
-                        const execDate = new Date(el.executionDate).getTime();
+                        // console.log('redDay', redDay);
+                        // console.log('yellowDay', yellowDay);
+                        // console.log('execDay', execDay);
+
+
+                        // console.log('Current day', currentDate/86400000);
+                        // console.log('Red day', redDate/86400000);
+
+                        // const exeDate = dateConversion(new Date(el.executionDate));
+                        // console.log('Current day111', currentDate/86400000 - exeDate/86400000);
 
                         let warning = '';
+                        //let execDate = 0;
                        
-                        if(execDate > redDate) {
-                            console.log('execDate < redDate')
-                            if(execDate < yellowDate) {
-                                console.log('execDate > yellowDate')
+                        if(execDay > redDay) {
+                            //console.log('execDate > redDate')
+                            if(execDay < yellowDay) {
+                                //console.log('execDate < yellowDate')
                                 warning = 'table-warning';
                             } else {
-                                console.log('execDate < yellowDate')
+                                //console.log('execDate > yellowDate')
                                 warning = '';
                             }                                
                         } else {
-                            console.log('execDate > redDate')
+                            //console.log('execDate < redDate')
                             warning = 'table-danger';
                         }
                             // className={'table-danger'}                        
