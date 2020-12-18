@@ -73,20 +73,7 @@ export const DBState = ({children}) => {
 
       console.log('SetData - data', data);
 
-      // if(property === 'control') {
-        
-      //   console.log('SetData - ELEMENT', element);
-      //   data.control = [
-      //           ...data.control,
-      //           {...element, id: ++maxId }
-      //         ];
-      //         console.log('SetData - Data.Control', data.control);
-      // } else{
-      //   data[property] = [
-      //     ...data[property],        
-      //     { id: ++maxId, name: element.name }
-      //   ];
-      // }      
+     
     // иначе - это редактирование существующего элемента 
     } else {
       const idx = data[property].findIndex(c => c.id === el.id)
@@ -102,18 +89,19 @@ export const DBState = ({children}) => {
   // /**************************************************
   //  * удаляем активную строку по клику кнопки delete 
   //  */
-  const deleteDocument = async (data, id) => {
+  const deleteElement = async (data, id, property) => {
 
-    //console.log('deleteDocument');
-    const filteredData = data.control.filter(el => el.id !== id);
+    console.log('deleteDocument', data);
+    //const filteredData = data.control.filter(el => el.id !== id);
+    const filteredData = data[property].filter(el => el.id !== id);
     //console.log('filteredData', filteredData);
 
     const newData = {
       ...data,
-      control: [...filteredData]
+      [property]: [...filteredData]
     }
 
-    //console.log('newData', newData); 
+    console.log('newData', newData); 
     const postData = await request('/api/data', 'POST', newData);
 
     //console.log('postData', postData);
@@ -148,43 +136,7 @@ export const DBState = ({children}) => {
     
     dispatch({type: DATA, data: postData});
   }
-
-  /**************************************************
-    * POST запрос
-    * записываем данные в файл после изменений данных -
-    * добавления, изменения или удаления    * 
-    */  
-  //  const setData = async (data, el) => {       
-    
-  //   let document;
-
-  //   // преобразовали из строки в число selects
-  //   const element = {
-  //     ...el, employee: Number(el.employee), typeDoc: Number(el.typeDoc)
-  //   }
-
-  //   // если id = 0, значит это новый объект,
-  //   // находим максимальное значение  id
-  //   if(el.id === 0) {
-  //     const arrId = data.control.map(e => e.id);
-  //     let maxId = Math.max.apply(null, arrId);
-  //     data.control = [
-  //       ...data.control,
-  //       {...element, id: ++maxId }
-  //     ];
-  //   // иначе - это редактирование существующего элемента 
-  //   } else {
-  //     const idx = data.control.findIndex(c => c.id === element.id)
-  //     data.control[idx] = element;
-  //     }    
-    
-  //   const newData = await request('/api/data', 'POST', data);    
-     
-  //   dispatch({type: DATA, data: newData});
-  // }
-
-
-
+  
   /**************************************************
   * функция запроса на сервер  
   */    
@@ -214,7 +166,7 @@ export const DBState = ({children}) => {
   return (
     <DBContext.Provider value={{
       data: state,
-      deleteDocument,
+      deleteElement,
       toExecuteDocument,
       getData, setData      
     }}>

@@ -8,7 +8,7 @@ import Select from '../elements/Select';
 
 const ChangeDocumentForm = (props) => {
     
-      console.log('Big Form - values', props.values);
+      console.log('Big Form - values', props);
     
     return (
         <>
@@ -28,9 +28,9 @@ const ChangeDocumentForm = (props) => {
             </Form.Row>
 
             <Form.Row>
-                <Form.Group as={Col} controlId="typeDoc">                    
+                <Form.Group as={Col} controlId="type">                    
                     <Select                        
-                        name='typeDoc'
+                        name='type'
                         label='Тип документа:'
                         options={props.type}
                         

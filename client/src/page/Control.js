@@ -45,7 +45,7 @@ const Control = () => {
 
     const { data, 
             getData, 
-            deleteDocument, 
+            deleteElement, 
             toExecuteDocument,
             setData } = useContext(DBContext); 
 
@@ -79,7 +79,7 @@ const Control = () => {
                     executionDate: new Date(),
                     title: '',
                     text: '',
-                    typeDoc: ''
+                    type: ''
                 }
         );
         //setTitle('Добавить документ');
@@ -97,7 +97,9 @@ const Control = () => {
         // }
         if(!actionRow) row = {...data.control[0]};
             else row = {...actionRow};               
-                
+             
+            console.log('Edit Document', row)
+
         setValues({
                     id: row.id,
                     numberDoc: row.numberDoc,
@@ -106,7 +108,7 @@ const Control = () => {
                     executionDate: new Date(row.executionDate),
                     title: row.title,
                     text: row.text,
-                    typeDoc: row.typeDoc
+                    type: row.type
                     }
         );
 
@@ -119,6 +121,7 @@ const Control = () => {
      * @param {объект активной строки} tr 
      */
     const changeActionRow = (tr) => {
+        console.log('Action Row', tr)
         setActionRow(tr);
     };
 
@@ -238,7 +241,8 @@ const Control = () => {
                         dialog={dialog}
                         data={data}
                         hideDialog={hideDialog}                        
-                        deleteDocument={deleteDocument}
+                        deleteElement={deleteElement}
+                        property={'control'}
                         toExecuteDocument={toExecuteDocument}
                     />
             }           

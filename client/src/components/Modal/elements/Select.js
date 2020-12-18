@@ -3,7 +3,8 @@ import { Field } from 'formik';
 import { Form } from 'react-bootstrap';
 
 function Select ( {name, label, options} ) {
-  
+  console.log("Select name", name);
+  console.log(options);
   return (
     <>    
       <Form.Label>{label}</Form.Label> 

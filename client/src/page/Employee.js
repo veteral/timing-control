@@ -9,6 +9,7 @@ import HeaderData from '../components/HeaderData';
 import Table from '../components/table/Table';
 import { DBContext } from '../context/DBContext';
 import Modal from '../components/modal/Modal';
+import ModalMessage from '../components/modal/ModalMessage';
 import ChangeNameForm from '../components/modal/forms/ChangeNameForm';
 
 
@@ -25,16 +26,17 @@ const Employee = () => {
     const [values, setValues] = useState({});  
     const [title, setTitle] = useState(''); 
     const [actionRow, setActionRow] = useState();
-    // const [dialog, setDialog] = useState({
-    //                                     show: false,
-    //                                     title: '',
-    //                                     text: '',
-    //                                     row: ''
-    //                                 });
+    const [dialog, setDialog] = useState({
+                                        show: false,
+                                        title: '',
+                                        text: '',
+                                        row: ''
+                                    });
 
     const { data,  
             getData,                       
-            setData } = useContext(DBContext); 
+            setData,
+            deleteElement } = useContext(DBContext); 
 
     //console.log('point 1 - start (context)', data);    
     useEffect(() => {      
@@ -96,10 +98,10 @@ const Employee = () => {
     /*************************************
     * открываем/закрываем диалоговое модальное окно
     */
-//    const hideDialog = () => {        
-//         setDialog( {...dialog,
-//                     show: false});
-//     }
+    const hideDialog = () => {        
+        setDialog( {...dialog,
+                    show: false});
+    }
     
     /**************************************************
      * удаляем выделеный документ
@@ -108,27 +110,27 @@ const Employee = () => {
         const word = 'Удалить';
         const title = 'Удалить исполнителя';
 
-        //openDialog(word, title, false);
+        openDialog(word, title, false);
     }
 
     /***************************************
      * открываем диалоговое окно для удаления активного документа
      */    
-    // function openDialog(word, title, check) {
-    //     let row;
-    //     if(!actionRow) row = {...data.control[0]};
-    //         else row = {...actionRow};    
+    function openDialog(word, title, check) {
+        let row;
+        if(!actionRow) row = {...data.control[0]};
+            else row = {...actionRow};    
 
-    //     const text = `${word} документ: № ${row.numberDoc}, заголовок - "${row.title}"`;   
-    //     setDialog({
-    //         ...dialog,            
-    //         show: true,
-    //         title,
-    //         text,
-    //         row,
-    //         check
-    //     });
-    // }    
+        const text = `${title} - "${row.name}"`;   
+        setDialog({
+            ...dialog,            
+            show: true,
+            title,
+            text,
+            row,
+            check
+        });
+    }    
 
     //блок кнопок 
     const blockButton = [        
@@ -171,16 +173,16 @@ const Employee = () => {
                         />
                     </Modal>
             }  
-            {/* { 
+            { 
                 dialog.show &&
                     <ModalMessage 
                         dialog={dialog}
                         data={data}
-                        hideDialog={hideDialog}                        
-                        deleteDocument={deleteDocument}
-                        toExecuteDocument={toExecuteDocument}
+                        hideDialog={hideDialog}  
+                        property={'employee'}                      
+                        deleteElement={deleteElement}                        
                     />
-            }            */}
+            }           
         </>
     );
 }

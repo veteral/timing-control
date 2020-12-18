@@ -28,7 +28,7 @@ app.get('/api/data', (req, res) => {
  * POST method
  */
 app.post('/api/data', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   setData(pathToData + 'data.json', req.body);
   res.json(req.body);
 });
@@ -37,7 +37,7 @@ app.post('/api/data', (req, res) => {
  * POST method exec
  */
 app.post('/api/exec', (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   setData(pathToData + 'data.json', req.body.data);
 
   let data = getData(pathToData + 'exec.json');
