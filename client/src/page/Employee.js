@@ -135,7 +135,7 @@ const Employee = () => {
         { id: 2, img: 'add', name: 'добавить', handleClick: addDocument },
         { id: 3, img: 'edit', name: 'изменить', handleClick: editDocument },
         { id: 4, img: 'delite', name: 'удалить', handleClick: modalDeliteDocument }        
-    ];
+    ];    
     
     return (
         <>  
@@ -159,7 +159,8 @@ const Employee = () => {
                     <Modal                    
                         showModal={showModal}
                         show={isModal}  
-                        setData={setData}                      
+                        setData={setData}   
+                        property={'employee'}                   
                         dataForm={values} 
                         titleForm={title} 
                         data={data}                  

@@ -37,38 +37,71 @@ export const DBState = ({children}) => {
     * записываем данные в файл после изменений данных -
     * добавления, изменения или удаления    * 
     */  
-  const setData = async (data, el) => {       
+  const setData = async (data, el, property) => {       
     
-    let document;
-
     // преобразовали из строки в число selects
-    const element = {
-      ...el, employee: Number(el.employee), typeDoc: Number(el.typeDoc)
+    console.log('SetData - start');
+
+    let element;
+
+    console.log('el', el);
+    if(property === 'control') {
+      element = {
+        ...el, employee: Number(el.employee), typeDoc: Number(el.typeDoc)        
+      };
+    } else {
+      element = { ...el };
     }
 
+    console.log('element', element);
+
+
+    
     // если id = 0, значит это новый объект,
     // находим максимальное значение  id
     if(el.id === 0) {
-      const arrId = data.control.map(e => e.id);
+      console.log('SetData - id = 0');
+      const arrId = data[property].map(e => e.id);
       let maxId = Math.max.apply(null, arrId);
-      data.control = [
-        ...data.control,
-        {...element, id: ++maxId }
+
+      console.log('SetData - Maxid', maxId);
+
+      data[property] = [
+        ...data[property],        
+        { ...element, id: ++maxId}
       ];
+
+      console.log('SetData - data', data);
+
+      // if(property === 'control') {
+        
+      //   console.log('SetData - ELEMENT', element);
+      //   data.control = [
+      //           ...data.control,
+      //           {...element, id: ++maxId }
+      //         ];
+      //         console.log('SetData - Data.Control', data.control);
+      // } else{
+      //   data[property] = [
+      //     ...data[property],        
+      //     { id: ++maxId, name: element.name }
+      //   ];
+      // }      
     // иначе - это редактирование существующего элемента 
     } else {
-      const idx = data.control.findIndex(c => c.id === element.id)
-      data.control[idx] = element;
+      const idx = data[property].findIndex(c => c.id === el.id)
+      data[property][idx] = element;
       }    
     
+      console.log('setData', data);
     const newData = await request('/api/data', 'POST', data);    
      
     dispatch({type: DATA, data: newData});
   }
 
-  /**************************************************
-   * удаляем активную строку по клику кнопки delete 
-   */
+  // /**************************************************
+  //  * удаляем активную строку по клику кнопки delete 
+  //  */
   const deleteDocument = async (data, id) => {
 
     //console.log('deleteDocument');
@@ -116,6 +149,41 @@ export const DBState = ({children}) => {
     dispatch({type: DATA, data: postData});
   }
 
+  /**************************************************
+    * POST запрос
+    * записываем данные в файл после изменений данных -
+    * добавления, изменения или удаления    * 
+    */  
+  //  const setData = async (data, el) => {       
+    
+  //   let document;
+
+  //   // преобразовали из строки в число selects
+  //   const element = {
+  //     ...el, employee: Number(el.employee), typeDoc: Number(el.typeDoc)
+  //   }
+
+  //   // если id = 0, значит это новый объект,
+  //   // находим максимальное значение  id
+  //   if(el.id === 0) {
+  //     const arrId = data.control.map(e => e.id);
+  //     let maxId = Math.max.apply(null, arrId);
+  //     data.control = [
+  //       ...data.control,
+  //       {...element, id: ++maxId }
+  //     ];
+  //   // иначе - это редактирование существующего элемента 
+  //   } else {
+  //     const idx = data.control.findIndex(c => c.id === element.id)
+  //     data.control[idx] = element;
+  //     }    
+    
+  //   const newData = await request('/api/data', 'POST', data);    
+     
+  //   dispatch({type: DATA, data: newData});
+  // }
+
+
 
   /**************************************************
   * функция запроса на сервер  
@@ -148,7 +216,7 @@ export const DBState = ({children}) => {
       data: state,
       deleteDocument,
       toExecuteDocument,
-      getData, setData, 
+      getData, setData      
     }}>
       { children }
     </DBContext.Provider>

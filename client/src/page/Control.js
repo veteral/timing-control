@@ -220,7 +220,8 @@ const Control = () => {
                     <Modal                    
                         showModal={showModal}
                         show={isModal}  
-                        setData={setData}                      
+                        setData={setData} 
+                        property={'control'}                     
                         dataForm={values} 
                         titleForm={title} 
                         data={data}                  

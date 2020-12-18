@@ -6,7 +6,8 @@ import { Formik } from 'formik';
 const ModalForm = ( { children, 
                       showModal, 
                       show, 
-                      setData, 
+                      setData,
+                      property, 
                       dataForm, 
                       titleForm,
                       data } ) => {
@@ -19,7 +20,7 @@ const ModalForm = ( { children,
         onSubmit={(values) => {          
           console.log("SubmitValues", values);
           showModal();
-          setData(data, values);
+          setData(data, values, property);
         }}        
       >
         {({
