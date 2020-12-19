@@ -1,37 +1,27 @@
-import React, 
-    { useContext, 
-      useEffect, 
-      useState
-    } from 'react';
-import { useHistory } from 'react-router-dom';
-import { DBContext } from '../context/DBContext';
+import React, {
+    useState,
+    useEffect,
+    useContext
+} from 'react';
+import TableBodyName from '../components/table/TableBodyName';
+import TableHeader from '../components/table/TableHeader';
 import HeaderData from '../components/HeaderData';
 import Table from '../components/table/Table';
+import { DBContext } from '../context/DBContext';
 import Modal from '../components/Modal/Modal';
-import ChangeDocumentForm from '../components/Modal/forms/ChangeDocumentForm';
-import TableHeader from '../components/table/TableHeader';
-import TableBodyControl from '../components/table/TableBodyControl';
 import ModalMessage from '../components/Modal/ModalMessage';
-import Print from './Print';
+import ChangeNameForm from '../components/Modal/forms/ChangeNameForm';
 
-//const MESSAGE = 'MESSAGE';
-//const DOCUMENT = 'DOCUMENT';
 
-const Control = () => {
+const NameTemplate = ({ property }) => {
     
-    const headingPage = 'Документы на контроле:';        
+    const headingPage = 'Исполнители:';        
     const tableTitle = [
-        ' ', 
-        'Номер документа', 
-        'Дата регистрации', 
+        ' ',         
         'Исполнитель',
-        'Дата исполнения',        
-        'Заголовок',
-        'Дополнительная информация',
-        'Тип документа',
     ];
 
-    const history = useHistory();
+    //const history = useHistory();
     const [isModal, setModal] = useState(false);
     const [values, setValues] = useState({});  
     const [title, setTitle] = useState(''); 
@@ -43,22 +33,17 @@ const Control = () => {
                                         row: ''
                                     });
 
-    const { data, 
-            getData, 
-            deleteElement, 
-            toExecuteDocument,
-            setData } = useContext(DBContext); 
+    const { data,  
+            getData,                       
+            setData,
+            deleteElement } = useContext(DBContext); 
 
-    console.log('point 1 - start (context)', data);
-    //const getDataCol = 
+    //console.log('point 1 - start (context)', data);    
     useEffect(() => {      
         getData();          
-        console.log('point - useEffect');                
-    }, []);    
-
-    // useEffect(() => {
-    //     console.log('data useEffect');
-    // }, [data]);
+        //const emp = data.employee;
+        //console.log('EMP - useEffect', emp);                
+    }, []);        
 
    /*************************************
     * открываем/закрываем модальное окно
@@ -73,16 +58,10 @@ const Control = () => {
     const addDocument = () => {
         setValues({
                     id: 0,
-                    numberDoc: '',
-                    dateDoc: new Date(),
-                    employee: '',
-                    executionDate: new Date(),
-                    title: '',
-                    text: '',
-                    type: ''
+                    name: ''                    
                 }
         );
-        //setTitle('Добавить документ');
+        setTitle('Добавить исполнителя');
         showModal();
     };
 
@@ -95,24 +74,16 @@ const Control = () => {
         // const newRow = {
         //     ...data.control[0]
         // }
-        if(!actionRow) row = {...data.control[0]};
+        if(!actionRow) row = {...data.employee[0]};
             else row = {...actionRow};               
-             
-            console.log('Edit Document', row)
-
+                
         setValues({
                     id: row.id,
-                    numberDoc: row.numberDoc,
-                    dateDoc: new Date(row.dateDoc),
-                    employee: row.employee,
-                    executionDate: new Date(row.executionDate),
-                    title: row.title,
-                    text: row.text,
-                    type: row.type
+                    name: row.name
                     }
         );
 
-        //setTitle('Изменить документ');
+        setTitle('Изменить имя исполнителя');
         showModal();   
     };   
     
@@ -121,34 +92,23 @@ const Control = () => {
      * @param {объект активной строки} tr 
      */
     const changeActionRow = (tr) => {
-        console.log('Action Row', tr)
         setActionRow(tr);
     };
 
     /*************************************
     * открываем/закрываем диалоговое модальное окно
     */
-   const hideDialog = () => {        
+    const hideDialog = () => {        
         setDialog( {...dialog,
                     show: false});
     }
-
+    
     /**************************************************
-     * помещаем выделенный документ в исполненые
+     * удаляем выделеный документ
      */
-     const modalCheckDocument = () => {
-        const word = 'Исполнить';
-        const title = 'Исполнить документ';
-        
-        openDialog(word, title, true);
-     }
-
-     /**************************************************
-      * удаляем выделеный документ
-      */
     const modalDeliteDocument = () => {
         const word = 'Удалить';
-        const title = 'Удалить документ';
+        const title = 'Удалить исполнителя';
 
         openDialog(word, title, false);
     }
@@ -161,7 +121,7 @@ const Control = () => {
         if(!actionRow) row = {...data.control[0]};
             else row = {...actionRow};    
 
-        const text = `${word} документ: № ${row.numberDoc}, заголовок - "${row.title}"`;   
+        const text = `${title} - "${row.name}"`;   
         setDialog({
             ...dialog,            
             show: true,
@@ -170,37 +130,15 @@ const Control = () => {
             row,
             check
         });
-    }
-
-    /******************************************************************
-     *  
-     */
-    function printDocument() {
-        let row;
-        if(!actionRow) row = {...data.control[0]};
-            else row = {...actionRow};  
-
-        const location = {
-                pathname: '/print',                
-                state: { row, data }
-            };
-        
-        history.push(location);
-    }
-
+    }    
 
     //блок кнопок 
-    const blockButton = [
-        { id: 1, img: 'check', name: 'исполнить', handleClick: modalCheckDocument },
+    const blockButton = [        
         { id: 2, img: 'add', name: 'добавить', handleClick: addDocument },
         { id: 3, img: 'edit', name: 'изменить', handleClick: editDocument },
-        { id: 4, img: 'delite', name: 'удалить', handleClick: modalDeliteDocument },
-        { id: 5, img: 'print', name: 'печать', handleClick: printDocument },
-    ];
-
-    console.log('point - return(data.control)', data);
-    console.log('point - return(data.control)', data.control);
-
+        { id: 4, img: 'delite', name: 'удалить', handleClick: modalDeliteDocument }        
+    ];    
+    
     return (
         <>  
             <HeaderData 
@@ -208,13 +146,14 @@ const Control = () => {
                 blockButton={blockButton}
             />                            
             { 
-                data.control && 
+                data.employee && 
                     <Table>
                         <TableHeader title={tableTitle} />
-                        <TableBodyControl 
+                        <TableBodyName 
                             data={data}
                             actionRow={actionRow}
                             setActionRow={changeActionRow} 
+                            property={property}
                         />
                     </Table>                 
             }
@@ -223,13 +162,13 @@ const Control = () => {
                     <Modal                    
                         showModal={showModal}
                         show={isModal}  
-                        setData={setData} 
-                        property={'control'}                     
+                        setData={setData}   
+                        property={property}                   
                         dataForm={values} 
                         titleForm={title} 
                         data={data}                  
                     >       
-                        <ChangeDocumentForm 
+                        <ChangeNameForm 
                             type={data.type} 
                             employee={data.employee} 
                         />
@@ -240,14 +179,13 @@ const Control = () => {
                     <ModalMessage 
                         dialog={dialog}
                         data={data}
-                        hideDialog={hideDialog}                        
-                        deleteElement={deleteElement}
-                        property={'control'}
-                        toExecuteDocument={toExecuteDocument}
+                        hideDialog={hideDialog}  
+                        property={property}                      
+                        deleteElement={deleteElement}                        
                     />
             }           
         </>
     );
 }
 
-export default Control;
+export default NameTemplate;

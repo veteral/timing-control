@@ -4,15 +4,16 @@ import arrow from '../../img/next.png';
 
 const TableBodyName = ({ data, 
                      actionRow, 
-                     setActionRow,                    
+                     setActionRow,  
+                     property                  
                     }) => {   
     console.log('point - TableBodyName', data);
     //console.log('ActionRow', actionRow);
     
     //при первой загрузке ставим первой активную строку
     if(!actionRow){
-        if(data.employee.length > 0) 
-            actionRow = { id: data.employee[0].id }; 
+        if(data[property].length > 0) 
+            actionRow = { id: data[property][0].id }; 
         else actionRow = null;
     }   
 
@@ -24,7 +25,7 @@ const TableBodyName = ({ data,
         <>                   
             <tbody>
                 {   
-                    data.employee.map(el => {             
+                    data[property].map(el => {             
                          //employees.map(el => {      
 
                         //if(el.id !== 0) 

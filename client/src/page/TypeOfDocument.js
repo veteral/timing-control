@@ -1,12 +1,10 @@
 import React from 'react';
+import NameTemplate from './NameTemplate';
 
 const TypeOfDocuments = () => {
     return (
-        <>
-            <div>TypeOfDocuments</div>
-
-            {/* <HeaderData title={'Исполнители:'} />
-            <TableData /> */}
+        <>            
+            <NameTemplate property={'type'} />           
         </>
     );
 }
