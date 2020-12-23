@@ -37,7 +37,7 @@ const TableBodyControl = ({ data,
                        
     
                         //console.log('point - TableBodyControl', data);
-    //console.log('ActionRow', actionRow);
+    console.log('TableBodyControl-DAT', data);
     
     //при первой загрузке ставим первой активную строку
     if(!actionRow){

@@ -4,7 +4,7 @@ import NameTemplate from './NameTemplate';
 const TypeOfDocuments = () => {
     return (
         <>            
-            <NameTemplate property={'type'} />           
+            <NameTemplate property={'type'} name={'Виды документов'} />           
         </>
     );
 }

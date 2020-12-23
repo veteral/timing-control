@@ -8,17 +8,17 @@ import TableHeader from '../components/table/TableHeader';
 import HeaderData from '../components/HeaderData';
 import Table from '../components/table/Table';
 import { DBContext } from '../context/DBContext';
-import Modal from '../components/Modal/Modal';
-import ModalMessage from '../components/Modal/ModalMessage';
-import ChangeNameForm from '../components/Modal/forms/ChangeNameForm';
+import Modal from '../components/modal/Modal';
+import ModalMessage from '../components/modal/ModalMessage';
+import ChangeNameForm from '../components/modal/forms/ChangeNameForm';
 
 
-const NameTemplate = ({ property }) => {
+const NameTemplate = ({ property, name }) => {
     
-    const headingPage = 'Исполнители:';        
+    const headingPage = name;        
     const tableTitle = [
         ' ',         
-        'Исполнитель',
+        name,
     ];
 
     //const history = useHistory();
@@ -40,9 +40,7 @@ const NameTemplate = ({ property }) => {
 
     //console.log('point 1 - start (context)', data);    
     useEffect(() => {      
-        getData();          
-        //const emp = data.employee;
-        //console.log('EMP - useEffect', emp);                
+        getData();                                 
     }, []);        
 
    /*************************************
@@ -61,7 +59,7 @@ const NameTemplate = ({ property }) => {
                     name: ''                    
                 }
         );
-        setTitle('Добавить исполнителя');
+        setTitle('Добавить');
         showModal();
     };
 
@@ -83,7 +81,7 @@ const NameTemplate = ({ property }) => {
                     }
         );
 
-        setTitle('Изменить имя исполнителя');
+        setTitle('Изменить наименование');
         showModal();   
     };   
     
@@ -108,7 +106,7 @@ const NameTemplate = ({ property }) => {
      */
     const modalDeliteDocument = () => {
         const word = 'Удалить';
-        const title = 'Удалить исполнителя';
+        const title = 'Удалить строку';
 
         openDialog(word, title, false);
     }

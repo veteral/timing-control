@@ -1,72 +1,14 @@
-[
-  {
-    "id": 8,
-    "numberDoc": "7",
-    "dateDoc": "2020-12-09T09:05:42.278Z",
-    "employee": 2,
-    "executionDate": "2020-12-24T09:05:42.000Z",
-    "title": "Header 7",
-    "text": "Text 777777",
-    "typeDoc": 1
-  },
-  {
-    "id": 7,
-    "numberDoc": "6",
-    "dateDoc": "2020-12-08T14:18:25.279Z",
-    "employee": 2,
-    "executionDate": "2020-12-31T14:18:25.000Z",
-    "title": "заголовок",
-    "text": "Текст",
-    "typeDoc": 2
-  },
-  {
-    "id": 1,
-    "numberDoc": "1-test",
-    "dateDoc": "2020-10-27T14:15:21.430Z",
-    "employee": 2,
-    "executionDate": "2020-10-01T13:15:21.000Z",
-    "title": "sdsds",
-    "text": "sdss",
-    "typeDoc": 1
-  },
-  {
-    "id": 5,
-    "numberDoc": "333",
-    "dateDoc": "2020-10-29T11:38:52.986Z",
-    "employee": 0,
-    "executionDate": "2020-11-01T11:38:52.000Z",
-    "title": "",
-    "text": "",
-    "typeDoc": 0
-  },
-  {
-    "id": 4,
-    "numberDoc": "222",
-    "dateDoc": "2020-10-29T11:38:40.474Z",
-    "employee": 1,
-    "executionDate": "2020-11-14T11:38:40.000Z",
-    "title": "xfrddgd",
-    "text": "gdgdgdg",
-    "typeDoc": 1
-  },
-  {
-    "id": 5,
-    "numberDoc": "333",
-    "dateDoc": "2020-10-29T11:38:52.986Z",
-    "employee": 0,
-    "executionDate": "2020-11-01T11:38:52.000Z",
-    "title": "",
-    "text": "",
-    "typeDoc": 0
-  },
-  {
-    "id": 3,
-    "numberDoc": "777",
-    "dateDoc": "2020-10-29T11:25:49.499Z",
-    "employee": 2,
-    "executionDate": "2021-01-03T11:25:49.000Z",
-    "title": "",
-    "text": "",
-    "typeDoc": 1
-  }
-]
+{
+  "exec": [
+    {
+      "id": 17,
+      "numberDoc": "1997",
+      "dateDoc": "2020-12-11T12:51:11.000Z",
+      "employee": "ОМВиСО",
+      "executionDate": "2020-12-21T12:51:11.000Z",
+      "title": "Администрация ДОСААФ",
+      "text": "Изменить время КТС",
+      "type": "Снятие"
+    }
+  ]
+}

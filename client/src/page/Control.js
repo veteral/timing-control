@@ -7,11 +7,11 @@ import { useHistory } from 'react-router-dom';
 import { DBContext } from '../context/DBContext';
 import HeaderData from '../components/HeaderData';
 import Table from '../components/table/Table';
-import Modal from '../components/Modal/Modal';
-import ChangeDocumentForm from '../components/Modal/forms/ChangeDocumentForm';
+import Modal from '../components/modal/Modal';
+import ChangeDocumentForm from '../components/modal/forms/ChangeDocumentForm';
 import TableHeader from '../components/table/TableHeader';
 import TableBodyControl from '../components/table/TableBodyControl';
-import ModalMessage from '../components/Modal/ModalMessage';
+import ModalMessage from '../components/modal/ModalMessage';
 import Print from './Print';
 
 //const MESSAGE = 'MESSAGE';
@@ -198,8 +198,8 @@ const Control = () => {
         { id: 5, img: 'print', name: 'печать', handleClick: printDocument },
     ];
 
-    console.log('point - return(data.control)', data);
-    console.log('point - return(data.control)', data.control);
+    console.log('CONTROL - return(data)', data);
+    console.log('CONTROL - return(data.control)', data.control);
 
     return (
         <>  

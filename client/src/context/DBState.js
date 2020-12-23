@@ -1,8 +1,8 @@
 import React, {useReducer} from 'react';
 import {DBContext} from './DBContext';
 import {DBReducer} from './DBReducer';
-import { DATA } from './type';
-// import {ADD_NOTE, FETCH_NOTES, REMOVE_NOTE, SHOW_LOADER} from '../types'
+import { SET_DATA, SET_EXEC } from './type';
+import { renderElement } from '../function/function';
 
 
 export const DBState = ({children}) => {
@@ -10,7 +10,11 @@ export const DBState = ({children}) => {
   //const URL = 'http://localhost:5000/';
 
   const initialState = {
-    data: {}    
+    //mainData: {},
+    control: [],
+    employee: [],
+    type: [],
+    exec: []    
   }
   const [state, dispatch] = useReducer(DBReducer, initialState);
  
@@ -19,9 +23,9 @@ export const DBState = ({children}) => {
    */  
   const getData = async () => {
       
-    const data = await request('/api/data'); 
+    const payload = await request('/api/data'); 
 
-    console.log('point - getData');
+    //console.log('point - getData');
     
     //data.control.sort((a, b) => new Date(a.dateDoc) - new Date(b.dateDoc));            
     //const actionRow = data.control[0];    
@@ -30,8 +34,22 @@ export const DBState = ({children}) => {
        //actionRow
    // }
     
-    dispatch({type: DATA, data});
+    dispatch({type: SET_DATA, payload});
   }
+
+  /**************************************************
+   * GET запрос exec.json
+   */  
+  const getExec = async () => {
+      
+    const payload = await request('/api/exec'); 
+
+    //console.log('getExec', data);   
+    //console.log('getExec', typeof(data));  
+        
+    dispatch({type: SET_EXEC, payload});
+  }
+
    /**************************************************
     * POST запрос
     * записываем данные в файл после изменений данных -
@@ -81,9 +99,9 @@ export const DBState = ({children}) => {
       }    
     
       console.log('setData', data);
-    const newData = await request('/api/data', 'POST', data);    
+    const payload = await request('/api/data', 'POST', data);    
      
-    dispatch({type: DATA, data: newData});
+    dispatch({type: SET_DATA, payload});
   }
 
   // /**************************************************
@@ -102,10 +120,10 @@ export const DBState = ({children}) => {
     }
 
     console.log('newData', newData); 
-    const postData = await request('/api/data', 'POST', newData);
+    const payload = await request('/api/data', 'POST', newData);
 
     //console.log('postData', postData);
-    dispatch({type: DATA, data: postData});
+    dispatch({type: SET_DATA, payload});
   }
 
   /************************************************************
@@ -113,28 +131,35 @@ export const DBState = ({children}) => {
    * по клику по кнопке 'исполнить'   
    */
   const toExecuteDocument = async (data, row) => {
-    console.log('toExecuteDocument-data', data);
-    console.log('toExecuteDocument-row', row);
+    //console.log('toExecuteDocument-data', data);
+    //console.log('toExecuteDocument-row', row);
+
+    // удаляем из "control" исполненый документ (активную строку)
     const filteredData = data.control.filter(el => el.id !== row.id);
     //console.log('filteredData', filteredData);
-
     const controlData = {
       ...data,
       control: [...filteredData]
     }
 
-    console.log('controlData', controlData); 
+    
+    row.employee = renderElement(data, row, 'employee');
+    row.type = renderElement(data, row, 'type');
+
+
+    //console.log('controlData', controlData); 
+    //console.log('row', row); 
     const newData = { data: {...controlData}, execRow: {...row} };
 
     console.log('newData', newData); 
-    const postData = await request('/api/exec', 'POST', newData);
+    const payload = await request('/api/exec', 'POST', newData);
 
-    //const postData = newData;
+    //postData = newData;
 
-    console.log('postData', postData);
-    //console.log('postData', postData.data.type);
+    console.log('postData', payload);
+    // //console.log('postData', postData.data.type);
     
-    dispatch({type: DATA, data: postData});
+    dispatch({type: SET_DATA, payload});
   }
   
   /**************************************************
@@ -168,7 +193,7 @@ export const DBState = ({children}) => {
       data: state,
       deleteElement,
       toExecuteDocument,
-      getData, setData      
+      getData, setData, getExec      
     }}>
       { children }
     </DBContext.Provider>
