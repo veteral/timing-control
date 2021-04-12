@@ -4,11 +4,11 @@
       "id": 17,
       "numberDoc": "1997",
       "dateDoc": "2020-12-11T12:51:11.000Z",
-      "employee": "ОМВиСО",
+      "employee": "employee",
       "executionDate": "2020-12-21T12:51:11.000Z",
-      "title": "Администрация ДОСААФ",
-      "text": "Изменить время КТС",
-      "type": "Снятие"
+      "title": "title1",
+      "text": "text",
+      "type": "type1"
     }
   ]
 }
